@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Shelf
+    uniqueID: 3381691753
+    locked: 0
+  - name: Block
+    uniqueID: 2004861815
+    locked: 0
