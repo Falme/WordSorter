@@ -6,12 +6,13 @@ public class Block : MonoBehaviour
 	private TextMeshPro text;
 	private SpriteRenderer spriteRenderer;
     private char letter = '?';
+	private Color32 initialColor;
 
-    public char Letter 
-	{
+    public char Letter
+    {
         get => letter;
-        set 
-		{
+        set
+        {
             letter = value;
             PrintLetter();
         }
@@ -21,12 +22,14 @@ public class Block : MonoBehaviour
 	{
 		text = GetComponentInChildren<TextMeshPro>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
+
+		initialColor = spriteRenderer.color;
 	}
 
     public void Highlight(bool enable)
     {
 		if(enable) spriteRenderer.color = Color.blue;
-		else spriteRenderer.color = Color.white;
+		else spriteRenderer.color = initialColor;
     }
 
     public void MoveTo(Vector3 newPosition)
