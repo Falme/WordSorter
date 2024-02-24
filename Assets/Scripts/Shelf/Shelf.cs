@@ -1,12 +1,16 @@
-using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
+    [Header("Prefab Reference Values")]
     [SerializeField] private Block blockPrefab;
     [SerializeField] private Transform shelfBlocks;
+    
+    [Header("Shelf Generation Data")]
+    [SerializeField] private string word;
+    [SerializeField] private int shelfSize;
     
     private Block[] blocks;
     private int blockPositionIndex = 0;
@@ -20,18 +24,18 @@ public class Shelf : MonoBehaviour
     
     private void Start()
     {
-        StartCoroutine(GenerateBlocks("CASA", 4));
+        StartCoroutine(GenerateBlocks(word, shelfSize));
     }
 
-    public IEnumerator GenerateBlocks(string word, int shelfSize)
+    public IEnumerator GenerateBlocks(string _word, int _shelfSize)
     {
-        if(IsWordBiggerThanShelf(word, shelfSize)) yield break;
+        if(IsWordBiggerThanShelf(_word, _shelfSize)) yield break;
 
-        word = word.ToUpper();
+        _word = _word.ToUpper();
 
-        blocks = new Block[shelfSize];
+        blocks = new Block[_shelfSize];
 
-        foreach (char letter in word)
+        foreach (char letter in _word)
         {
             var _block = Instantiate(blockPrefab.gameObject, shelfBlocks).GetComponent<Block>();
             _block.Letter = letter;
@@ -43,17 +47,6 @@ public class Shelf : MonoBehaviour
 
     }
 
-    private bool IsWordBiggerThanShelf(string word, int shelfSize)
-    {
-        if (word.Length > shelfSize)
-        {
-            Debug.LogError("Number of Letters in a Shelf was Exceeded at GenerateBlocks");
-            Debug.LogError("Make Sure to not put a longer word to a smaller shelf");
-            return true;
-        }
-        return false;
-    }
-
     public void SelectShelf()
     {
         Selected = !Selected;
@@ -62,9 +55,20 @@ public class Shelf : MonoBehaviour
 
     private void AppendBlock(Block block)
     {
+        if(IsFilled)
+        {
+            Debug.LogError("Trying to Add a Letter Block to a Filled Shelf");
+            return;
+        }
+
         block.transform.localPosition = PositionOfNextLetter;
         blocks[blockPositionIndex] = block;
         blockPositionIndex++;
+    }
+
+    private void DetachBlock(Block block)
+    {
+
     }
 
     public string Stringify()
@@ -75,6 +79,17 @@ public class Shelf : MonoBehaviour
             _result.Append(blocks[a].Letter);
 
         return _result.ToString();
+    }
+
+    private bool IsWordBiggerThanShelf(string _word, int _shelfSize)
+    {
+        if (_word.Length > _shelfSize)
+        {
+            Debug.LogError("Number of Letters in a Shelf was Exceeded at GenerateBlocks");
+            Debug.LogError("Make Sure to not put a longer word to a smaller shelf");
+            return true;
+        }
+        return false;
     }
 
     public void Update()
