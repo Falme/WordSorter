@@ -5,18 +5,18 @@ public class Block : MonoBehaviour
 {
 	private TextMeshPro text;
 	private SpriteRenderer spriteRenderer;
-    private char letter = '?';
+	private char letter = '?';
 	private Color32 initialColor;
 
-    public char Letter
-    {
-        get => letter;
-        set
-        {
-            letter = value;
-            PrintLetter();
-        }
-    }
+	public char Letter
+	{
+		get => letter;
+		set
+		{
+			letter = value;
+			PrintLetter();
+		}
+	}
 
 	private void Awake()
 	{
@@ -26,19 +26,18 @@ public class Block : MonoBehaviour
 		initialColor = spriteRenderer.color;
 	}
 
-    public void Highlight(bool enable)
-    {
-		if(enable) spriteRenderer.color = Color.blue;
-		else spriteRenderer.color = initialColor;
-    }
+	public void Highlight(bool enable)
+	{
+		spriteRenderer.color = enable ? Color.blue : initialColor;
+	}
 
-    public void MoveTo(Vector3 newPosition)
-    {
+	public void MoveTo(Vector3 newPosition)
+	{
 		transform.position = newPosition;
-    }
+	}
 
-    private void PrintLetter()
-    {
+	private void PrintLetter()
+	{
 		text.text = Letter.ToString();
-    }
+	}
 }

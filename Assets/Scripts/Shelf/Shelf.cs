@@ -1,101 +1,107 @@
+using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-    [Header("Prefab Reference Values")]
-    [SerializeField] private Block blockPrefab;
-    [SerializeField] private Transform shelfBlocks;
-    
-    [Header("Shelf Generation Data")]
-    [SerializeField] private string word;
-    [SerializeField] private int shelfSize;
-    
-    private Block[] blocks;
-    private int blockPositionIndex = 0;
+	public delegate void SelectShelfDelegate(Shelf shelf);
+	public static event SelectShelfDelegate SelectShelfEvent;
 
-    private bool Selected {get; set;}
+	[Header("Prefab Reference Values")]
+	[SerializeField] private Block blockPrefab;
+	[SerializeField] private Transform shelfBlocks;
 
-    public Vector3 PositionOfNextLetter =>
-        new Vector3(0.8f * blockPositionIndex, 0f);
+	[Header("Shelf Generation Data")]
+	[SerializeField] private string word;
+	[SerializeField] private int shelfSize;
 
-    public bool IsFilled => blocks[blocks.Length - 1] != null;
-    
-    private void Start()
-    {
-        StartCoroutine(GenerateBlocks(word, shelfSize));
-    }
+	private Block[] blocks;
+	private int blockPositionIndex = 0;
 
-    public IEnumerator GenerateBlocks(string _word, int _shelfSize)
-    {
-        if(IsWordBiggerThanShelf(_word, _shelfSize)) yield break;
+	public Vector3 PositionOfNextLetter =>
+		new Vector3(0.8f * blockPositionIndex, 0f);
 
-        _word = _word.ToUpper();
+	public bool IsFilled => blocks[blocks.Length - 1] != null;
+	public bool IsEmpty => blocks[0] == null;
 
-        blocks = new Block[_shelfSize];
+	private void Start()
+	{
+		StartCoroutine(GenerateBlocks(word, shelfSize));
+	}
 
-        foreach (char letter in _word)
-        {
-            var _block = Instantiate(blockPrefab.gameObject, shelfBlocks).GetComponent<Block>();
-            _block.Letter = letter;
+	public IEnumerator GenerateBlocks(string _word, int _shelfSize)
+	{
+		if (IsWordBiggerThanShelf(_word, _shelfSize)) yield break;
 
-            AppendBlock(_block);
+		_word = _word.ToUpper();
 
-            yield return null;
-        }
+		blocks = new Block[_shelfSize];
 
-    }
+		foreach (char letter in _word)
+		{
+			var _block = Instantiate(blockPrefab.gameObject, shelfBlocks).GetComponent<Block>();
+			_block.Letter = letter;
 
-    public void SelectShelf()
-    {
-        Selected = !Selected;
-        blocks[blockPositionIndex-1].Highlight(Selected);
-    }
+			AppendBlock(_block);
 
-    private void AppendBlock(Block block)
-    {
-        if(IsFilled)
-        {
-            Debug.LogError("Trying to Add a Letter Block to a Filled Shelf");
-            return;
-        }
+			yield return null;
+		}
 
-        block.transform.localPosition = PositionOfNextLetter;
-        blocks[blockPositionIndex] = block;
-        blockPositionIndex++;
-    }
+	}
 
-    private void DetachBlock(Block block)
-    {
+	public void SelectShelf()
+	{
+		SelectShelfEvent?.Invoke(this);
+	}
 
-    }
+	public void Highlight()
+	{
+		blocks[blockPositionIndex - 1].Highlight(true);
+	}
 
-    public string Stringify()
-    {
-        StringBuilder _result = new StringBuilder();
+	public bool CanAppendBlock() => !IsFilled;
+	public bool CanDetachBlock() => blocks[0] != null;
 
-        for(int a=0; a<blocks.Length;a++)
-            _result.Append(blocks[a].Letter);
+	public void AppendBlock(Block block)
+	{
+		block.Highlight(false);
 
-        return _result.ToString();
-    }
+		block.transform.SetParent(shelfBlocks);
+		block.transform.localPosition = PositionOfNextLetter;
+		blocks[blockPositionIndex] = block;
+		blockPositionIndex++;
+	}
 
-    private bool IsWordBiggerThanShelf(string _word, int _shelfSize)
-    {
-        if (_word.Length > _shelfSize)
-        {
-            Debug.LogError("Number of Letters in a Shelf was Exceeded at GenerateBlocks");
-            Debug.LogError("Make Sure to not put a longer word to a smaller shelf");
-            return true;
-        }
-        return false;
-    }
+	public Block DetachBlock()
+	{
+		var _block = blocks[blockPositionIndex - 1];
+		blocks[blockPositionIndex - 1] = null;
+		blockPositionIndex--;
+		return _block;
+	}
 
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha1)) Debug.Log(Stringify());
-    }
+	public string Stringify()
+	{
+		StringBuilder _result = new StringBuilder();
 
-    public void OnMouseDown() => SelectShelf();
+		for (int a = 0; a < blocks.Length; a++)
+			_result.Append(blocks[a].Letter);
+
+		return _result.ToString();
+	}
+
+	private bool IsWordBiggerThanShelf(string _word, int _shelfSize)
+	{
+		if (_word.Length > _shelfSize)
+		{
+			Debug.LogError("Number of Letters in a Shelf was Exceeded at GenerateBlocks");
+			Debug.LogError("Make Sure to not put a longer word to a smaller shelf");
+			return true;
+		}
+		return false;
+	}
+
+	public void OnMouseDown() => SelectShelf();
+
 }
