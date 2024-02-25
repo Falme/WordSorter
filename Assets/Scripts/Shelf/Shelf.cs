@@ -4,54 +4,48 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
+	#region Events
 	public delegate void SelectShelfDelegate(Shelf shelf);
 	public static event SelectShelfDelegate SelectShelfEvent;
+	#endregion
+
 
 	[Header("Prefab Reference Values")]
 	[SerializeField] private Block blockPrefab;
-	[SerializeField] private Transform shelfBlocks;
-	[SerializeField] private Transform shelfBoard;
+	[SerializeField] private Transform blocksArea, board;
 
-	private float letterSpacing;
 	private Block[] blocks;
-	private int blockPositionIndex = 0;
+	private int nextBlockIndex = 0;
+	private float blockSpacing;
 
-	public Vector3 PositionOfNextLetter =>
-		new Vector3(letterSpacing * blockPositionIndex, 0f);
+	public bool CanAppendBlock => blocks[blocks.Length - 1] == null;
+	public bool CanDetachBlock => blocks[0] != null;
 
-	public bool IsFilled => blocks[blocks.Length - 1] != null;
-	public bool IsEmpty => blocks[0] == null;
-
-	public bool CanAppendBlock => !IsFilled;
-	public bool CanDetachBlock => !IsEmpty;
-
-	public void Initialize(ShelfSettings _shelfSettings, LevelConfiguration _levelConfiguration, int _shelfIndex)
+	public void Initialize(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration, int index)
 	{
-		letterSpacing = _shelfSettings.letterSpacing;
+		blockSpacing = shelfSettings.blockSpacing;
 
-		var word = _levelConfiguration.shelvesData[_shelfIndex].scrambledWord;
-		var shelfCapacity = _levelConfiguration.shelfCapacity;
-		StartCoroutine(GenerateBlocks(word, shelfCapacity));
+		var scrambledWord = levelConfiguration.shelvesData[index].scrambledWord;
+		var capacity = levelConfiguration.shelfCapacity;
 
-		SetShelfBoardSize((shelfCapacity - 1) * _shelfSettings.shelfWidthIncrement);
+		StartCoroutine(GenerateBlocks(scrambledWord, capacity));
+		SetBoardWidth((capacity - 1) * shelfSettings.widthIncrement);
 	}
 
-	private void SetShelfBoardSize(float xPosition)
+	private void SetBoardWidth(float xPosition)
 	{
-		shelfBoard.localPosition += Vector3.right * xPosition;
+		board.localPosition += Vector3.right * xPosition;
 	}
 
-	public IEnumerator GenerateBlocks(string _word, int _shelfSize)
+	public IEnumerator GenerateBlocks(string word, int shelfSize)
 	{
-		if (IsWordBiggerThanShelf(_word, _shelfSize)) yield break;
+		if (IsWordBiggerThanShelf(word, shelfSize)) yield break;
 
-		_word = _word.ToUpper();
+		blocks = new Block[shelfSize];
 
-		blocks = new Block[_shelfSize];
-
-		foreach (char letter in _word)
+		foreach (char letter in word)
 		{
-			var _block = Instantiate(blockPrefab.gameObject, shelfBlocks).GetComponent<Block>();
+			var _block = Instantiate(blockPrefab.gameObject, blocksArea).GetComponent<Block>();
 			_block.Letter = letter;
 
 			AppendBlock(_block);
@@ -67,28 +61,33 @@ public class Shelf : MonoBehaviour
 
 	public void Highlight()
 	{
-		blocks[blockPositionIndex - 1].Highlight(true);
+		blocks[nextBlockIndex - 1].Highlight(true);
 	}
 
 
 	public void AppendBlock(Block block)
 	{
 		block.Highlight(false);
-		block.MoveTo(PositionOfNextLetter, shelfBlocks);
+		block.MoveTo(GetPositionOfNextBlock(), blocksArea);
 
-		blocks[blockPositionIndex] = block;
+		blocks[nextBlockIndex] = block;
 
-		blockPositionIndex++;
+		nextBlockIndex++;
 	}
 
 	public Block DetachBlock()
 	{
-		var _block = blocks[blockPositionIndex - 1];
-		blocks[blockPositionIndex - 1] = null;
+		var _block = blocks[nextBlockIndex - 1];
+		blocks[nextBlockIndex - 1] = null;
 
-		blockPositionIndex--;
+		nextBlockIndex--;
 
 		return _block;
+	}
+
+	public Vector3 GetPositionOfNextBlock()
+	{
+		return new Vector3(blockSpacing * nextBlockIndex, 0f);
 	}
 
 	public string Stringify()
@@ -101,9 +100,9 @@ public class Shelf : MonoBehaviour
 		return _result.ToString();
 	}
 
-	private bool IsWordBiggerThanShelf(string _word, int _shelfSize)
+	private bool IsWordBiggerThanShelf(string word, int shelfSize)
 	{
-		if (_word.Length > _shelfSize)
+		if (word.Length > shelfSize)
 		{
 			Debug.LogError("Number of Letters in a Shelf was Exceeded at GenerateBlocks \n " +
 							"Make Sure to not put a longer word to a smaller shelf");

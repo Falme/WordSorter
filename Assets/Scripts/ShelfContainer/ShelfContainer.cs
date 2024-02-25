@@ -13,7 +13,7 @@ public class ShelfContainer : MonoBehaviour
 		for (int i = 0; i < levelConfiguration.shelvesData.Length; i++)
 		{
 			var _shelf = Instantiate(shelfPrefab, transform).GetComponent<Shelf>();
-			_shelf.transform.localPosition = new Vector3(0f, i * -shelfSettings.shelfVerticalSpacing);
+			_shelf.transform.localPosition = new Vector3(0f, i * -shelfSettings.verticalSpacing);
 
 			_shelf.Initialize(shelfSettings, levelConfiguration, i);
 		}

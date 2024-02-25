@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 5835546026967211481, guid: 62838eb16ab37eb498daf330dff7de78, type: 3}
-  shelfBlocks: {fileID: 7305232184595788547}
-  shelfBoard: {fileID: 4284133394600471352}
+  blocksArea: {fileID: 7305232184595788547}
+  board: {fileID: 4284133394600471352}
 --- !u!61 &7269953952944598050
 BoxCollider2D:
   m_ObjectHideFlags: 0
