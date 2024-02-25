@@ -54,33 +54,33 @@ public class Shelf : MonoBehaviour
 
 		foreach (char letter in word)
 		{
-			var _block = Instantiate(blockPrefab.gameObject, blocksArea).GetComponent<Block>();
-			_block.Letter = letter;
+			var block = Instantiate(blockPrefab.gameObject, blocksArea).GetComponent<Block>();
+			block.Letter = letter;
 
-			AppendBlock(_block);
+			AppendBlock(block);
 
 			yield return null;
 		}
 	}
 
-	public void AppendBlock(Block block)
+	public void AppendBlock(Block appendBlock)
 	{
-		block.Highlight(false);
-		block.MoveTo(GetPositionOfNextBlock(), blocksArea);
+		appendBlock.Highlight(false);
+		appendBlock.MoveTo(GetPositionOfNextBlock(), blocksArea);
 
-		blocks[nextBlockIndex] = block;
+		blocks[nextBlockIndex] = appendBlock;
 
 		nextBlockIndex++;
 	}
 
 	public Block DetachBlock()
 	{
-		var _block = blocks[nextBlockIndex - 1];
+		var detachBlock = blocks[nextBlockIndex - 1];
 		blocks[nextBlockIndex - 1] = null;
 
 		nextBlockIndex--;
 
-		return _block;
+		return detachBlock;
 	}
 
 	public void SelectShelf()
@@ -100,12 +100,12 @@ public class Shelf : MonoBehaviour
 
 	public string Stringify()
 	{
-		StringBuilder _result = new StringBuilder();
+		StringBuilder result = new StringBuilder();
 
 		for (int a = 0; a < blocks.Length; a++)
-			_result.Append(blocks[a].Letter);
+			result.Append(blocks[a].Letter);
 
-		return _result.ToString();
+		return result.ToString();
 	}
 
 	private bool IsWordBiggerThanShelf(string word, int shelfSize)
