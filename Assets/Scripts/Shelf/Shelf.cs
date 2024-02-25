@@ -9,7 +9,6 @@ public class Shelf : MonoBehaviour
 	public static event SelectShelfDelegate SelectShelfEvent;
 	#endregion
 
-
 	[Header("Prefab Reference Values")]
 	[SerializeField] private Block blockPrefab;
 	[SerializeField] private Transform blocksArea, board;
@@ -23,12 +22,22 @@ public class Shelf : MonoBehaviour
 
 	public void Initialize(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration, int index)
 	{
+		InitializeBlockGeneration(shelfSettings, levelConfiguration, index);
+		InitializeBoard(shelfSettings, levelConfiguration);
+	}
+
+	private void InitializeBlockGeneration(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration, int index)
+	{
 		blockSpacing = shelfSettings.blockSpacing;
 
 		var scrambledWord = levelConfiguration.shelvesData[index].scrambledWord;
 		var capacity = levelConfiguration.shelfCapacity;
-
 		StartCoroutine(GenerateBlocks(scrambledWord, capacity));
+	}
+
+	private void InitializeBoard(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration)
+	{
+		var capacity = levelConfiguration.shelfCapacity;
 		SetBoardWidth((capacity - 1) * shelfSettings.widthIncrement);
 	}
 
@@ -54,17 +63,6 @@ public class Shelf : MonoBehaviour
 		}
 	}
 
-	public void SelectShelf()
-	{
-		SelectShelfEvent?.Invoke(this);
-	}
-
-	public void Highlight()
-	{
-		blocks[nextBlockIndex - 1].Highlight(true);
-	}
-
-
 	public void AppendBlock(Block block)
 	{
 		block.Highlight(false);
@@ -83,6 +81,16 @@ public class Shelf : MonoBehaviour
 		nextBlockIndex--;
 
 		return _block;
+	}
+
+	public void SelectShelf()
+	{
+		SelectShelfEvent?.Invoke(this);
+	}
+
+	public void Highlight()
+	{
+		blocks[nextBlockIndex - 1].Highlight(true);
 	}
 
 	public Vector3 GetPositionOfNextBlock()
