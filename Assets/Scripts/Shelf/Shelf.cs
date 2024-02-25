@@ -12,12 +12,12 @@ public class Shelf : MonoBehaviour
 	[SerializeField] private Transform shelfBlocks;
 	[SerializeField] private Transform shelfBoard;
 
-	private ShelfSettings shelfSettings;
+	private float letterSpacing;
 	private Block[] blocks;
 	private int blockPositionIndex = 0;
 
 	public Vector3 PositionOfNextLetter =>
-		new Vector3(shelfSettings.letterSpacing * blockPositionIndex, 0f);
+		new Vector3(letterSpacing * blockPositionIndex, 0f);
 
 	public bool IsFilled => blocks[blocks.Length - 1] != null;
 	public bool IsEmpty => blocks[0] == null;
@@ -27,7 +27,7 @@ public class Shelf : MonoBehaviour
 
 	public void Initialize(ShelfSettings _shelfSettings, LevelConfiguration _levelConfiguration, int _shelfIndex)
 	{
-		shelfSettings = _shelfSettings;
+		letterSpacing = _shelfSettings.letterSpacing;
 
 		var word = _levelConfiguration.shelvesData[_shelfIndex].scrambledWord;
 		var shelfCapacity = _levelConfiguration.shelfCapacity;
@@ -40,8 +40,6 @@ public class Shelf : MonoBehaviour
 	{
 		shelfBoard.localPosition += Vector3.right * xPosition;
 	}
-
-	public void OnMouseDown() => SelectShelf();
 
 	public IEnumerator GenerateBlocks(string _word, int _shelfSize)
 	{
@@ -76,9 +74,7 @@ public class Shelf : MonoBehaviour
 	public void AppendBlock(Block block)
 	{
 		block.Highlight(false);
-
-		block.transform.SetParent(shelfBlocks);
-		block.transform.localPosition = PositionOfNextLetter;
+		block.MoveTo(PositionOfNextLetter, shelfBlocks);
 
 		blocks[blockPositionIndex] = block;
 
@@ -115,5 +111,7 @@ public class Shelf : MonoBehaviour
 		}
 		return false;
 	}
+
+	public void OnMouseDown() => SelectShelf();
 
 }
