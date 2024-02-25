@@ -4,4 +4,6 @@ using UnityEngine;
 public class ShelfSettings : ScriptableObject
 {
 	public float letterSpacing;
+	public float shelfVerticalSpacing;
+	public float shelfWidthIncrement;
 }

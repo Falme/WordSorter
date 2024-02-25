@@ -10,12 +10,9 @@ public class Shelf : MonoBehaviour
 	[Header("Prefab Reference Values")]
 	[SerializeField] private Block blockPrefab;
 	[SerializeField] private Transform shelfBlocks;
-	[SerializeField] private ShelfSettings shelfSettings;
+	[SerializeField] private Transform shelfBoard;
 
-	[Header("Shelf Generation Data")]
-	[SerializeField] private string word;
-	[SerializeField] private int shelfSize;
-
+	private ShelfSettings shelfSettings;
 	private Block[] blocks;
 	private int blockPositionIndex = 0;
 
@@ -28,7 +25,21 @@ public class Shelf : MonoBehaviour
 	public bool CanAppendBlock => !IsFilled;
 	public bool CanDetachBlock => !IsEmpty;
 
-	private void Start() => StartCoroutine(GenerateBlocks(word, shelfSize));
+	public void Initialize(ShelfSettings _shelfSettings, LevelConfiguration _levelConfiguration, int _shelfIndex)
+	{
+		shelfSettings = _shelfSettings;
+
+		var word = _levelConfiguration.shelvesData[_shelfIndex].scrambledWord;
+		var shelfCapacity = _levelConfiguration.shelfCapacity;
+		StartCoroutine(GenerateBlocks(word, shelfCapacity));
+
+		SetShelfBoardSize((shelfCapacity - 1) * _shelfSettings.shelfWidthIncrement);
+	}
+
+	private void SetShelfBoardSize(float xPosition)
+	{
+		shelfBoard.localPosition += Vector3.right * xPosition;
+	}
 
 	public void OnMouseDown() => SelectShelf();
 
@@ -104,6 +115,5 @@ public class Shelf : MonoBehaviour
 		}
 		return false;
 	}
-
 
 }
