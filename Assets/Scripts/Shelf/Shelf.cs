@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
@@ -11,6 +10,7 @@ public class Shelf : MonoBehaviour
 	[Header("Prefab Reference Values")]
 	[SerializeField] private Block blockPrefab;
 	[SerializeField] private Transform shelfBlocks;
+	[SerializeField] private ShelfSettings shelfSettings;
 
 	[Header("Shelf Generation Data")]
 	[SerializeField] private string word;
@@ -20,15 +20,17 @@ public class Shelf : MonoBehaviour
 	private int blockPositionIndex = 0;
 
 	public Vector3 PositionOfNextLetter =>
-		new Vector3(0.8f * blockPositionIndex, 0f);
+		new Vector3(shelfSettings.letterSpacing * blockPositionIndex, 0f);
 
 	public bool IsFilled => blocks[blocks.Length - 1] != null;
 	public bool IsEmpty => blocks[0] == null;
 
-	private void Start()
-	{
-		StartCoroutine(GenerateBlocks(word, shelfSize));
-	}
+	public bool CanAppendBlock => !IsFilled;
+	public bool CanDetachBlock => !IsEmpty;
+
+	private void Start() => StartCoroutine(GenerateBlocks(word, shelfSize));
+
+	public void OnMouseDown() => SelectShelf();
 
 	public IEnumerator GenerateBlocks(string _word, int _shelfSize)
 	{
@@ -47,7 +49,6 @@ public class Shelf : MonoBehaviour
 
 			yield return null;
 		}
-
 	}
 
 	public void SelectShelf()
@@ -60,8 +61,6 @@ public class Shelf : MonoBehaviour
 		blocks[blockPositionIndex - 1].Highlight(true);
 	}
 
-	public bool CanAppendBlock() => !IsFilled;
-	public bool CanDetachBlock() => blocks[0] != null;
 
 	public void AppendBlock(Block block)
 	{
@@ -69,7 +68,9 @@ public class Shelf : MonoBehaviour
 
 		block.transform.SetParent(shelfBlocks);
 		block.transform.localPosition = PositionOfNextLetter;
+
 		blocks[blockPositionIndex] = block;
+
 		blockPositionIndex++;
 	}
 
@@ -77,7 +78,9 @@ public class Shelf : MonoBehaviour
 	{
 		var _block = blocks[blockPositionIndex - 1];
 		blocks[blockPositionIndex - 1] = null;
+
 		blockPositionIndex--;
+
 		return _block;
 	}
 
@@ -95,13 +98,12 @@ public class Shelf : MonoBehaviour
 	{
 		if (_word.Length > _shelfSize)
 		{
-			Debug.LogError("Number of Letters in a Shelf was Exceeded at GenerateBlocks");
-			Debug.LogError("Make Sure to not put a longer word to a smaller shelf");
+			Debug.LogError("Number of Letters in a Shelf was Exceeded at GenerateBlocks \n " +
+							"Make Sure to not put a longer word to a smaller shelf");
 			return true;
 		}
 		return false;
 	}
 
-	public void OnMouseDown() => SelectShelf();
 
 }

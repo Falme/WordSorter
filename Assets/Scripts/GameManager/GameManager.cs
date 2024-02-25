@@ -10,12 +10,12 @@ public class GameManager : MonoBehaviour
 
 	private void OnSelectedShelf(Shelf shelf)
 	{
-		if (lastSelectedShelf == null && shelf.CanDetachBlock())
+		if (lastSelectedShelf == null && shelf.CanDetachBlock)
 		{
 			shelf.Highlight();
 			lastSelectedShelf = shelf;
 		}
-		else if (lastSelectedShelf != null && shelf.CanAppendBlock())
+		else if (lastSelectedShelf != null && shelf.CanAppendBlock)
 		{
 			PassBlockToShelf(lastSelectedShelf, shelf);
 			lastSelectedShelf = null;

@@ -5,9 +5,9 @@ public class Block : MonoBehaviour
 {
 	private TextMeshPro text;
 	private SpriteRenderer spriteRenderer;
-	private char letter = '?';
 	private Color32 initialColor;
 
+	private char letter = '?';
 	public char Letter
 	{
 		get => letter;
