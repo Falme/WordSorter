@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-	private TextMeshPro text;
+	[SerializeField] private BlockSettings blockSettings;
+
 	private SpriteRenderer spriteRenderer;
-	private Color32 initialColor;
 
 	private char letter = '?';
 	public char Letter
@@ -20,24 +20,22 @@ public class Block : MonoBehaviour
 
 	private void Awake()
 	{
-		text = GetComponentInChildren<TextMeshPro>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-
-		initialColor = spriteRenderer.color;
 	}
 
 	public void Highlight(bool enable)
 	{
-		spriteRenderer.color = enable ? Color.blue : initialColor;
+		spriteRenderer.color = enable ? blockSettings.highlightColor : blockSettings.defaultColor;
 	}
 
-	public void MoveTo(Vector3 newPosition)
+	public void MoveTo(Vector3 newPosition, Transform newParent)
 	{
-		transform.position = newPosition;
+		transform.SetParent(newParent);
+		transform.localPosition = newPosition;
 	}
 
 	private void PrintLetter()
 	{
-		text.text = Letter.ToString();
+		GetComponentInChildren<TextMeshPro>().text = Letter.ToString();
 	}
 }

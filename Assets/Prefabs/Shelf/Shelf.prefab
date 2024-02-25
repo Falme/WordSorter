@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 4107192805522359047}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: -4, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,10 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 5835546026967211481, guid: 62838eb16ab37eb498daf330dff7de78, type: 3}
-  shelfBlocks: {fileID: 7305232184595788547}
-  shelfSettings: {fileID: 11400000, guid: 87e92870df8c9884b9609963838a12ab, type: 2}
-  word: 
-  shelfSize: 0
+  blocksArea: {fileID: 7305232184595788547}
+  board: {fileID: 4284133394600471352}
 --- !u!61 &7269953952944598050
 BoxCollider2D:
   m_ObjectHideFlags: 0

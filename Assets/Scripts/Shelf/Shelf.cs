@@ -4,51 +4,83 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
+	#region Events
 	public delegate void SelectShelfDelegate(Shelf shelf);
 	public static event SelectShelfDelegate SelectShelfEvent;
+	#endregion
 
 	[Header("Prefab Reference Values")]
 	[SerializeField] private Block blockPrefab;
-	[SerializeField] private Transform shelfBlocks;
-	[SerializeField] private ShelfSettings shelfSettings;
-
-	[Header("Shelf Generation Data")]
-	[SerializeField] private string word;
-	[SerializeField] private int shelfSize;
+	[SerializeField] private Transform blocksArea, board;
 
 	private Block[] blocks;
-	private int blockPositionIndex = 0;
+	private int nextBlockIndex = 0;
+	private float blockSpacing;
 
-	public Vector3 PositionOfNextLetter =>
-		new Vector3(shelfSettings.letterSpacing * blockPositionIndex, 0f);
+	public bool CanAppendBlock => blocks[blocks.Length - 1] == null;
+	public bool CanDetachBlock => blocks[0] != null;
 
-	public bool IsFilled => blocks[blocks.Length - 1] != null;
-	public bool IsEmpty => blocks[0] == null;
-
-	public bool CanAppendBlock => !IsFilled;
-	public bool CanDetachBlock => !IsEmpty;
-
-	private void Start() => StartCoroutine(GenerateBlocks(word, shelfSize));
-
-	public void OnMouseDown() => SelectShelf();
-
-	public IEnumerator GenerateBlocks(string _word, int _shelfSize)
+	public void Initialize(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration, int index)
 	{
-		if (IsWordBiggerThanShelf(_word, _shelfSize)) yield break;
+		InitializeBlockGeneration(shelfSettings, levelConfiguration, index);
+		InitializeBoard(shelfSettings, levelConfiguration);
+	}
 
-		_word = _word.ToUpper();
+	private void InitializeBlockGeneration(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration, int index)
+	{
+		blockSpacing = shelfSettings.blockSpacing;
 
-		blocks = new Block[_shelfSize];
+		var scrambledWord = levelConfiguration.shelvesData[index].scrambledWord;
+		var capacity = levelConfiguration.shelfCapacity;
+		StartCoroutine(GenerateBlocks(scrambledWord, capacity));
+	}
 
-		foreach (char letter in _word)
+	private void InitializeBoard(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration)
+	{
+		var capacity = levelConfiguration.shelfCapacity;
+		SetBoardWidth((capacity - 1) * shelfSettings.widthIncrement);
+	}
+
+	private void SetBoardWidth(float xPosition)
+	{
+		board.localPosition += Vector3.right * xPosition;
+	}
+
+	public IEnumerator GenerateBlocks(string word, int shelfSize)
+	{
+		if (IsWordBiggerThanShelf(word, shelfSize)) yield break;
+
+		blocks = new Block[shelfSize];
+
+		foreach (char letter in word)
 		{
-			var _block = Instantiate(blockPrefab.gameObject, shelfBlocks).GetComponent<Block>();
-			_block.Letter = letter;
+			var block = Instantiate(blockPrefab.gameObject, blocksArea).GetComponent<Block>();
+			block.Letter = letter;
 
-			AppendBlock(_block);
+			AppendBlock(block);
 
 			yield return null;
 		}
+	}
+
+	public void AppendBlock(Block appendBlock)
+	{
+		appendBlock.Highlight(false);
+		appendBlock.MoveTo(GetPositionOfNextBlock(), blocksArea);
+
+		blocks[nextBlockIndex] = appendBlock;
+
+		nextBlockIndex++;
+	}
+
+	public Block DetachBlock()
+	{
+		var detachBlock = blocks[nextBlockIndex - 1];
+		blocks[nextBlockIndex - 1] = null;
+
+		nextBlockIndex--;
+
+		return detachBlock;
 	}
 
 	public void SelectShelf()
@@ -58,45 +90,27 @@ public class Shelf : MonoBehaviour
 
 	public void Highlight()
 	{
-		blocks[blockPositionIndex - 1].Highlight(true);
+		blocks[nextBlockIndex - 1].Highlight(true);
 	}
 
-
-	public void AppendBlock(Block block)
+	public Vector3 GetPositionOfNextBlock()
 	{
-		block.Highlight(false);
-
-		block.transform.SetParent(shelfBlocks);
-		block.transform.localPosition = PositionOfNextLetter;
-
-		blocks[blockPositionIndex] = block;
-
-		blockPositionIndex++;
-	}
-
-	public Block DetachBlock()
-	{
-		var _block = blocks[blockPositionIndex - 1];
-		blocks[blockPositionIndex - 1] = null;
-
-		blockPositionIndex--;
-
-		return _block;
+		return new Vector3(blockSpacing * nextBlockIndex, 0f);
 	}
 
 	public string Stringify()
 	{
-		StringBuilder _result = new StringBuilder();
+		StringBuilder result = new StringBuilder();
 
 		for (int a = 0; a < blocks.Length; a++)
-			_result.Append(blocks[a].Letter);
+			result.Append(blocks[a].Letter);
 
-		return _result.ToString();
+		return result.ToString();
 	}
 
-	private bool IsWordBiggerThanShelf(string _word, int _shelfSize)
+	private bool IsWordBiggerThanShelf(string word, int shelfSize)
 	{
-		if (_word.Length > _shelfSize)
+		if (word.Length > shelfSize)
 		{
 			Debug.LogError("Number of Letters in a Shelf was Exceeded at GenerateBlocks \n " +
 							"Make Sure to not put a longer word to a smaller shelf");
@@ -105,5 +119,6 @@ public class Shelf : MonoBehaviour
 		return false;
 	}
 
+	public void OnMouseDown() => SelectShelf();
 
 }

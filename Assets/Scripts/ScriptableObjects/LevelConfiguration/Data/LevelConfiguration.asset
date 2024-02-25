@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea5883ec444231d43b2699a07f98280d, type: 3}
-  m_Name: ShelfSettings
+  m_Script: {fileID: 11500000, guid: 34bfedd9270a3b34ba2334b4d716f1d9, type: 3}
+  m_Name: LevelConfiguration
   m_EditorClassIdentifier: 
-  blockSpacing: 0.8
-  verticalSpacing: 1.8
-  widthIncrement: 0.8
+  shelfCapacity: 4
+  shelvesData:
+  - word: casa
+    scrambledWord: csaa
+  - word: moda
+    scrambledWord: omda
+  - word: 
+    scrambledWord: 
