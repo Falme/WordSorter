@@ -2,28 +2,29 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	private Shelf lastSelectedShelf = null;
-	// List<PanelWord> panelWords
+	[SerializeField] private LevelConfiguration levelConfiguration;
 
-	private void OnEnable() => Shelf.SelectShelfEvent += OnSelectedShelf;
-	private void OnDisable() => Shelf.SelectShelfEvent -= OnSelectedShelf;
+	private void OnEnable() => ShelfManager.SendCurrentWordsEvent += OnSelectedShelf;
+	private void OnDisable() => ShelfManager.SendCurrentWordsEvent -= OnSelectedShelf;
 
-	private void OnSelectedShelf(Shelf shelf)
+	private void OnSelectedShelf(string[] words)
 	{
-		if (lastSelectedShelf == null && shelf.CanDetachBlock)
-		{
-			shelf.Highlight();
-			lastSelectedShelf = shelf;
-		}
-		else if (lastSelectedShelf != null && shelf.CanAppendBlock)
-		{
-			PassBlockToShelf(lastSelectedShelf, shelf);
-			lastSelectedShelf = null;
-		}
+		Debug.Log(CheckIfAllWordsMatch(words, levelConfiguration.shelvesData));
 	}
 
-	private void PassBlockToShelf(Shelf shelfFrom, Shelf shelfTo)
+	private bool CheckIfAllWordsMatch(string[] shelfWords, WordData[] correctWords)
 	{
-		shelfTo.AppendBlock(shelfFrom.DetachBlock());
+		for (int a = 0; a < correctWords.Length; a++)
+		{
+			bool found = false;
+			for (int b = 0; b < shelfWords.Length; b++)
+			{
+				if (correctWords[a].word.Equals(shelfWords[b])) found = true;
+			}
+
+			if (!found) return false;
+		}
+
+		return true;
 	}
 }
