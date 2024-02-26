@@ -38,9 +38,10 @@ public class GameManager : MonoBehaviour
 		return true;
 	}
 
-	private void Restart()
+	public void Restart()
 	{
 		shelfManager.Restart();
+		panelWords.Restart();
 	}
 
 	private void Update()

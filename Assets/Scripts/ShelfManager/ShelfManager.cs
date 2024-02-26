@@ -75,6 +75,8 @@ public class ShelfManager : MonoBehaviour
 
 	public void Restart()
 	{
+		lastSelectedShelf = null;
+
 		Shelf[] unbalancedShelves = GetUnbalancedShelves();
 		while (unbalancedShelves[0] != null)
 		{

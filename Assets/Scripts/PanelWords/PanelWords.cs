@@ -58,4 +58,9 @@ public class PanelWords : MonoBehaviour
 		}
 	}
 
+	public void Restart()
+	{
+		ClearWords();
+	}
+
 }
