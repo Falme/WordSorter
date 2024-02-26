@@ -103,7 +103,8 @@ public class Shelf : MonoBehaviour
 		StringBuilder result = new StringBuilder();
 
 		for (int a = 0; a < blocks.Length; a++)
-			result.Append(blocks[a].Letter);
+			if (blocks[a] != null)
+				result.Append(blocks[a].Letter);
 
 		return result.ToString();
 	}
