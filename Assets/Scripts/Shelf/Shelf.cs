@@ -17,6 +17,8 @@ public class Shelf : MonoBehaviour
 	private int nextBlockIndex = 0;
 	private float blockSpacing;
 
+	private string originalScrambledWord;
+
 	public bool CanAppendBlock => blocks[blocks.Length - 1] == null;
 	public bool CanDetachBlock => blocks[0] != null;
 
@@ -32,6 +34,8 @@ public class Shelf : MonoBehaviour
 
 		var scrambledWord = levelConfiguration.shelvesData[index].scrambledWord;
 		var capacity = levelConfiguration.shelfCapacity;
+
+		originalScrambledWord = scrambledWord;
 		StartCoroutine(GenerateBlocks(scrambledWord, capacity));
 	}
 

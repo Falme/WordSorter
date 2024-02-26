@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	[Header("Current Level Data")]
 	[SerializeField] private LevelConfiguration levelConfiguration;
+
+	[Header("Scene References")]
 	[SerializeField] private ShelfManager shelfManager;
 	[SerializeField] private PanelWords panelWords;
 
@@ -12,10 +15,10 @@ public class GameManager : MonoBehaviour
 		panelWords.Initialize(levelConfiguration);
 	}
 
-	private void OnEnable() => ShelfManager.SendCurrentWordsEvent += OnSelectedShelf;
-	private void OnDisable() => ShelfManager.SendCurrentWordsEvent -= OnSelectedShelf;
+	private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
+	private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
 
-	private void OnSelectedShelf(string[] words)
+	private void CompareWords(string[] words)
 	{
 		Debug.Log(CheckIfAllWordsMatch(words, levelConfiguration.shelvesData));
 	}
@@ -26,9 +29,8 @@ public class GameManager : MonoBehaviour
 		{
 			bool found = false;
 			for (int b = 0; b < shelfWords.Length; b++)
-			{
-				if (correctWords[a].word.Equals(shelfWords[b])) found = true;
-			}
+				if (correctWords[a].word.Equals(shelfWords[b]))
+					found = true;
 
 			if (!found) return false;
 		}

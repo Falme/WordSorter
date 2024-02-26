@@ -1,12 +1,11 @@
-using System;
 using UnityEngine;
 
 public class ShelfManager : MonoBehaviour
 {
 
 	#region Events
-	public delegate void SendCurrentWordsDelegate(string[] words);
-	public static event SendCurrentWordsDelegate SendCurrentWordsEvent;
+	public delegate void CompareWordsDelegate(string[] words);
+	public static event CompareWordsDelegate CompareWordsEvent;
 	#endregion
 
 	[SerializeField] private GameObject shelfPrefab;
@@ -65,7 +64,7 @@ public class ShelfManager : MonoBehaviour
 			lastSelectedShelf = null;
 		}
 
-		SendCurrentWordsEvent?.Invoke(GetShelvesContent());
+		CompareWordsEvent?.Invoke(GetShelvesContent());
 	}
 
 	private void PassBlockToShelf(Shelf shelfFrom, Shelf shelfTo)
