@@ -3,6 +3,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	[SerializeField] private LevelConfiguration levelConfiguration;
+	[SerializeField] private ShelfManager shelfManager;
+	[SerializeField] private PanelWords panelWords;
+
+	private void Start()
+	{
+		shelfManager.Initialize(levelConfiguration);
+		panelWords.Initialize(levelConfiguration);
+	}
 
 	private void OnEnable() => ShelfManager.SendCurrentWordsEvent += OnSelectedShelf;
 	private void OnDisable() => ShelfManager.SendCurrentWordsEvent -= OnSelectedShelf;

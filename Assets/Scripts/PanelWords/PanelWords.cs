@@ -6,15 +6,16 @@ public class PanelWords : MonoBehaviour
 {
 	[SerializeField] private GameObject wordItemPrefab;
 	[SerializeField] private Transform wordAreaTop, wordAreaBottom;
-	[SerializeField] private LevelConfiguration levelConfiguration;
 
+	private LevelConfiguration levelConfiguration;
 	private List<WordItem> wordItems;
 
 	private void OnEnable() => ShelfManager.SendCurrentWordsEvent += CheckWordsMatch;
 	private void OnDisable() => ShelfManager.SendCurrentWordsEvent -= CheckWordsMatch;
 
-	public void Start()
+	public void Initialize(LevelConfiguration levelConfiguration)
 	{
+		this.levelConfiguration = levelConfiguration;
 		GenerateWordItems();
 	}
 
@@ -56,4 +57,5 @@ public class PanelWords : MonoBehaviour
 				wordItems[a].Highlight(false);
 		}
 	}
+
 }

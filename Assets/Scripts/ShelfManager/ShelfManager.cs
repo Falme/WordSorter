@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ShelfManager : MonoBehaviour
@@ -10,13 +11,19 @@ public class ShelfManager : MonoBehaviour
 
 	[SerializeField] private GameObject shelfPrefab;
 	[SerializeField] private ShelfSettings shelfSettings;
-	[SerializeField] private LevelConfiguration levelConfiguration;
+
+	private LevelConfiguration levelConfiguration;
 
 	private Shelf lastSelectedShelf = null;
 
 	private Shelf[] shelves;
 
-	private void Start() => InstantiateShelves();
+	public void Initialize(LevelConfiguration levelConfiguration)
+	{
+		this.levelConfiguration = levelConfiguration;
+		InstantiateShelves();
+	}
+
 	private void OnEnable() => Shelf.SelectShelfEvent += OnSelectedShelf;
 	private void OnDisable() => Shelf.SelectShelfEvent -= OnSelectedShelf;
 
@@ -65,4 +72,5 @@ public class ShelfManager : MonoBehaviour
 	{
 		shelfTo.AppendBlock(shelfFrom.DetachBlock());
 	}
+
 }
