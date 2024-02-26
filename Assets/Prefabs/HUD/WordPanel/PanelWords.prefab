@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5064872545111545949}
   - component: {fileID: 8116277107397391096}
   - component: {fileID: 7748311345739937600}
+  - component: {fileID: 7358151962111027251}
   m_Layer: 5
   m_Name: PanelWords
   m_TagString: Untagged
@@ -77,6 +78,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 5
+--- !u!114 &7358151962111027251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3376933896715649768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592aef1ec0d9c9e4e938ad0cac2ee9cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wordItemPrefab: {fileID: 5762590160134821187, guid: bd47ac28b2d811e44ad77da24e7aab9d, type: 3}
+  wordAreaTop: {fileID: 7227877396969681100}
+  wordAreaBottom: {fileID: 4508256287746703249}
+  levelConfiguration: {fileID: 11400000, guid: 91fa725027ea42a47bc21b23d5bb776a, type: 2}
 --- !u!1 &4452100459953268020
 GameObject:
   m_ObjectHideFlags: 0
