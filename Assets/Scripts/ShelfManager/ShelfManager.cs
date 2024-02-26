@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ShelfManager : MonoBehaviour
@@ -70,6 +71,44 @@ public class ShelfManager : MonoBehaviour
 	private void PassBlockToShelf(Shelf shelfFrom, Shelf shelfTo)
 	{
 		shelfTo.AppendBlock(shelfFrom.DetachBlock());
+	}
+
+	public void Restart()
+	{
+		Shelf[] unbalancedShelves = GetUnbalancedShelves();
+		while (unbalancedShelves[0] != null)
+		{
+			PassBlockToShelf(unbalancedShelves[0], unbalancedShelves[1]);
+			unbalancedShelves = GetUnbalancedShelves();
+		}
+
+		for (int a = 0; a < shelves.Length; a++)
+			shelves[a].Restart();
+	}
+
+	private Shelf[] GetUnbalancedShelves()
+	{
+		// First Value is Higher
+		// Second Value is Lower
+		Shelf[] unbalancedShelves = new Shelf[2];
+
+		for (int a = 0; a < shelves.Length; a++)
+		{
+			int shelfLength = shelves[a].ShelfLength;
+			int scrambledWordLength = levelConfiguration.shelvesData[a].scrambledWord.Length;
+
+			if (shelfLength > scrambledWordLength)
+				unbalancedShelves[0] = shelves[a];
+			else if (shelfLength < scrambledWordLength)
+				unbalancedShelves[1] = shelves[a];
+		}
+
+		return unbalancedShelves;
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.R)) Restart();
 	}
 
 }

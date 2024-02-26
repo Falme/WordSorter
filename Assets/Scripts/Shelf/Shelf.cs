@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class Shelf : MonoBehaviour
 
 	public bool CanAppendBlock => blocks[blocks.Length - 1] == null;
 	public bool CanDetachBlock => blocks[0] != null;
+
+	public int ShelfLength => nextBlockIndex;
 
 	public void Initialize(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration, int index)
 	{
@@ -122,6 +125,15 @@ public class Shelf : MonoBehaviour
 			return true;
 		}
 		return false;
+	}
+
+	public void Restart()
+	{
+		for (int a = 0; a < blocks.Length; a++)
+		{
+			if (blocks[a] != null)
+				blocks[a].Letter = originalScrambledWord[a];
+		}
 	}
 
 	public void OnMouseDown() => SelectShelf();
