@@ -10,8 +10,8 @@ public class PanelWords : MonoBehaviour
 	private LevelConfiguration levelConfiguration;
 	private List<WordItem> wordItems;
 
-	private void OnEnable() => ShelfManager.SendCurrentWordsEvent += CheckWordsMatch;
-	private void OnDisable() => ShelfManager.SendCurrentWordsEvent -= CheckWordsMatch;
+	private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
+	private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
 
 	public void Initialize(LevelConfiguration levelConfiguration)
 	{
@@ -32,7 +32,7 @@ public class PanelWords : MonoBehaviour
 		}
 	}
 
-	private void CheckWordsMatch(string[] words)
+	private void CompareWords(string[] words)
 	{
 		ClearWords();
 
@@ -56,6 +56,11 @@ public class PanelWords : MonoBehaviour
 			if (wordItems[a] != null)
 				wordItems[a].Highlight(false);
 		}
+	}
+
+	public void Restart()
+	{
+		ClearWords();
 	}
 
 }

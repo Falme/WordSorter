@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
@@ -17,8 +18,12 @@ public class Shelf : MonoBehaviour
 	private int nextBlockIndex = 0;
 	private float blockSpacing;
 
+	private string originalScrambledWord;
+
 	public bool CanAppendBlock => blocks[blocks.Length - 1] == null;
 	public bool CanDetachBlock => blocks[0] != null;
+
+	public int ShelfLength => nextBlockIndex;
 
 	public void Initialize(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration, int index)
 	{
@@ -32,6 +37,8 @@ public class Shelf : MonoBehaviour
 
 		var scrambledWord = levelConfiguration.shelvesData[index].scrambledWord;
 		var capacity = levelConfiguration.shelfCapacity;
+
+		originalScrambledWord = scrambledWord;
 		StartCoroutine(GenerateBlocks(scrambledWord, capacity));
 	}
 
@@ -118,6 +125,15 @@ public class Shelf : MonoBehaviour
 			return true;
 		}
 		return false;
+	}
+
+	public void Restart()
+	{
+		for (int a = 0; a < blocks.Length; a++)
+		{
+			if (blocks[a] != null)
+				blocks[a].Letter = originalScrambledWord[a];
+		}
 	}
 
 	public void OnMouseDown() => SelectShelf();

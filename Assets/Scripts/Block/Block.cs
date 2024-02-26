@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+	[Header("Prefab Reference Values")]
 	[SerializeField] private BlockSettings blockSettings;
 
 	private SpriteRenderer spriteRenderer;
@@ -21,6 +22,8 @@ public class Block : MonoBehaviour
 	private void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
+
+		Highlight(false);
 	}
 
 	public void Highlight(bool enable)

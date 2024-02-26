@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WordItem : MonoBehaviour
 {
+	[SerializeField] private WordItemSettings settings;
 	private TextMeshProUGUI text;
 	public string Word { get; private set; }
 
@@ -14,17 +15,15 @@ public class WordItem : MonoBehaviour
 	public void Initialize(string word)
 	{
 		Word = word;
-		Print();
-	}
+		text.text = word;
 
-	private void Print()
-	{
-		text.text = Word;
+		Highlight(false);
 	}
 
 	public void Highlight(bool enable)
 	{
-		text.fontStyle = enable ? (FontStyles.Bold | FontStyles.Underline) : FontStyles.Normal;
+		text.fontStyle = enable ? settings.highlightFontStyle : settings.defaultFontStyle;
+		text.color = enable ? settings.highlightColor : settings.defaultColor;
 	}
 
 }
