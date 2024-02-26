@@ -106,9 +106,4 @@ public class ShelfManager : MonoBehaviour
 		return unbalancedShelves;
 	}
 
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.R)) Restart();
-	}
-
 }

@@ -37,4 +37,14 @@ public class GameManager : MonoBehaviour
 
 		return true;
 	}
+
+	private void Restart()
+	{
+		shelfManager.Restart();
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.R)) Restart();
+	}
 }
