@@ -8,12 +8,15 @@ public class LevelButton : MonoBehaviour
 	[SerializeField] private LevelButtonSettings levelButtonSettings;
 	[SerializeField] private Image levelImage;
 
-	[SerializeField] private bool initialState;
+	private Button button;
 
-	public void Start()
+	public string SceneName { get; set; }
+
+	private void Awake()
 	{
+		button = GetComponent<Button>();
+
 		ChangeNumber(transform.GetSiblingIndex() + 1);
-		ChangeStatus(initialState);
 	}
 
 	public void ChangeNumber(int levelNumber)
@@ -23,6 +26,8 @@ public class LevelButton : MonoBehaviour
 
 	public void ChangeStatus(bool enable)
 	{
+		button.interactable = enable;
+
 		levelImage.sprite = enable ? levelButtonSettings.spriteEnabled : levelButtonSettings.spriteDisabled;
 		levelImage.color = enable ? levelButtonSettings.colorEnabled : levelButtonSettings.colorDisabled;
 
@@ -34,8 +39,8 @@ public class LevelButton : MonoBehaviour
 		levelText.enabled = enable;
 	}
 
-	public void GoToLevel(string levelName)
+	public void GoToLevel()
 	{
-		LevelManager.Instance.LoadScene(levelName);
+		LevelManager.Instance.LoadScene(SceneName);
 	}
 }
