@@ -43,9 +43,4 @@ public class GameManager : MonoBehaviour
 		shelfManager.Restart();
 		panelWords.Restart();
 	}
-
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.R)) Restart();
-	}
 }
