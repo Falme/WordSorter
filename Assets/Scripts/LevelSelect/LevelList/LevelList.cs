@@ -70,10 +70,4 @@ public class LevelList : MonoBehaviour
 		UpdateUI();
 		UpdateLevels();
 	}
-
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Q)) PreviousWorld();
-		if (Input.GetKeyDown(KeyCode.W)) NextWorld();
-	}
 }
