@@ -1,7 +1,18 @@
+using System;
 using UnityEngine;
 
 public class LevelList : MonoBehaviour
 {
+
+	#region Events
+	public delegate void SelectedWorldTitleDelegate(string worldName);
+	public static event SelectedWorldTitleDelegate SelectedWorldTitleEvent;
+
+	public delegate void ChangedWorldNumberDelegate(int currentWorld, int worldsLength);
+	public static event ChangedWorldNumberDelegate ChangedWorldNumberEvent;
+	#endregion
+
+
 	[SerializeField] private LevelSelectionConfiguration levelSelectionConfiguration;
 
 	private LevelButton[] levelButtons;
@@ -10,6 +21,7 @@ public class LevelList : MonoBehaviour
 	private void Start()
 	{
 		LoadWorld();
+		UpdateUI();
 	}
 
 	public void LoadWorld()
@@ -20,6 +32,12 @@ public class LevelList : MonoBehaviour
 			levelButtons[a] = transform.GetChild(a).GetComponent<LevelButton>();
 
 		UpdateLevels();
+	}
+
+	private void UpdateUI()
+	{
+		SelectedWorldTitleEvent?.Invoke(levelSelectionConfiguration.worlds[world].worldName);
+		ChangedWorldNumberEvent?.Invoke(world, levelSelectionConfiguration.worlds.Length);
 	}
 
 	public void UpdateLevels()
@@ -39,13 +57,17 @@ public class LevelList : MonoBehaviour
 
 	public void NextWorld()
 	{
+		if (world >= levelSelectionConfiguration.worlds.Length - 1) return;
 		world++;
+		UpdateUI();
 		UpdateLevels();
 	}
 
 	public void PreviousWorld()
 	{
+		if (world <= 0) return;
 		world--;
+		UpdateUI();
 		UpdateLevels();
 	}
 
