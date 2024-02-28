@@ -20,7 +20,6 @@ namespace WordSorter
 	public class LevelSelectData
 	{
 		public LevelConfiguration levelData;
-		public LevelConfiguration nextLevel;
 		public bool isEnabled;
 	}
 }
