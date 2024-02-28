@@ -28,7 +28,13 @@ public class GameManager : MonoBehaviour
 
 	private void CompareWords(string[] words)
 	{
-		Debug.Log(CheckIfAllWordsMatch(words, levelConfiguration.shelvesData));
+		if (CheckIfAllWordsMatch(words, levelConfiguration.shelvesData))
+		{
+			Popup.Instance.OpenPopup("Congratulations! \n To the next Level!", PopupType.OK, () =>
+			{
+				LevelManager.Instance.LoadScene("LevelSelect");
+			});
+		}
 	}
 
 	private bool CheckIfAllWordsMatch(string[] shelfWords, WordData[] correctWords)

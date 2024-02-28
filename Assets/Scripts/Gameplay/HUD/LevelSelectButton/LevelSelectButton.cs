@@ -6,6 +6,9 @@ public class LevelSelectButton : MonoBehaviour
 
 	public void ReturnToLevelSelection()
 	{
-		LevelManager.Instance.LoadScene(SceneName);
+		Popup.Instance.OpenPopup("Return to Level Selection?", PopupType.YES_NO, () =>
+		{
+			LevelManager.Instance.LoadScene(SceneName);
+		});
 	}
 }
