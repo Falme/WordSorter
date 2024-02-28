@@ -562,6 +562,7 @@ GameObject:
   - component: {fileID: 8364915249632614422}
   - component: {fileID: 2246649029260811339}
   - component: {fileID: 5328538179946003774}
+  - component: {fileID: 5009283499893371371}
   - component: {fileID: 2135872200345160503}
   m_Layer: 5
   m_Name: PopupCanvas
@@ -653,6 +654,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &5009283499893371371
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5162670863773771112}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &2135872200345160503
 MonoBehaviour:
   m_ObjectHideFlags: 0

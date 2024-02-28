@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 	public static LevelManager Instance { get; private set; }
 
 	public LevelConfiguration CurrentLevel { get; set; }
+	public LevelConfiguration NextLevel { get; set; }
 
 #if UNITY_EDITOR
 
@@ -34,5 +35,11 @@ public class LevelManager : MonoBehaviour
 	public void LoadScene(string sceneName)
 	{
 		SceneManager.LoadScene(sceneName);
+	}
+
+	public void ChangeToNextLevel()
+	{
+		CurrentLevel = NextLevel;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }

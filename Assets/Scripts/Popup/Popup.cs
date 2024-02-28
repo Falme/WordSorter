@@ -17,6 +17,8 @@ public class Popup : MonoBehaviour
 	[SerializeField] private Canvas canvasYesNo, canvasOK;
 
 	private Canvas canvas;
+	private CanvasGroup canvasGroup;
+
 	private Action buttonACallback, buttonBCallback;
 
 	private void Awake()
@@ -34,11 +36,12 @@ public class Popup : MonoBehaviour
 	private void Start()
 	{
 		canvas = GetComponent<Canvas>();
+		canvasGroup = GetComponent<CanvasGroup>();
 	}
 
 	public void OpenPopup(string bodyText, PopupType popupType, Action buttonACallback = null, Action buttonBCallback = null)
 	{
-		canvas.enabled = true;
+		EnableCanvas(true);
 		messageText.text = bodyText;
 
 		this.buttonACallback = buttonACallback;
@@ -58,13 +61,13 @@ public class Popup : MonoBehaviour
 	public void OnClickYes()
 	{
 		buttonACallback?.Invoke();
-		canvas.enabled = false;
+		EnableCanvas(false);
 	}
 
 	public void OnClickNo()
 	{
 		buttonBCallback?.Invoke();
-		canvas.enabled = false;
+		EnableCanvas(false);
 	}
 
 	private void ShowDecisionButtons()
@@ -77,5 +80,11 @@ public class Popup : MonoBehaviour
 	{
 		canvasYesNo.enabled = false;
 		canvasOK.enabled = true;
+	}
+
+	private void EnableCanvas(bool enable)
+	{
+		canvas.enabled = enable;
+		canvasGroup.interactable = enable;
 	}
 }

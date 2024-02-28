@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 		{
 			Popup.Instance.OpenPopup("Congratulations! \n To the next Level!", PopupType.OK, () =>
 			{
-				LevelManager.Instance.LoadScene("LevelSelect");
+				LevelManager.Instance.ChangeToNextLevel();
 			});
 		}
 	}
