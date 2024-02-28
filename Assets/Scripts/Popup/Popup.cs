@@ -88,6 +88,7 @@ namespace WordSorter
 		{
 			canvas.enabled = enable;
 			canvasGroup.interactable = enable;
+			canvasGroup.blocksRaycasts = enable;
 		}
 	}
 }
