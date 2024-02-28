@@ -17,6 +17,6 @@ public class WorldSelectData
 [Serializable]
 public class LevelSelectData
 {
-	public string sceneName;
+	public LevelConfiguration levelData;
 	public bool isEnabled;
 }

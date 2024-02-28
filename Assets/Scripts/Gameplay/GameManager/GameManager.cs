@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	[Header("Current Level Data")]
-	[SerializeField] private LevelConfiguration levelConfiguration;
-
 	[Header("Scene References")]
 	[SerializeField] private ShelfManager shelfManager;
 	[SerializeField] private PanelWords panelWords;
 
+	private LevelConfiguration levelConfiguration;
+
 	private void Start()
 	{
+		levelConfiguration = LevelManager.Instance.CurrentLevel;
+
+		if (levelConfiguration == null)
+		{
+			Debug.LogError("LevelConfiguration was not set, please check " +
+							"the Level Selection and Level Scriptable Objects");
+			return;
+		}
+
 		shelfManager.Initialize(levelConfiguration);
 		panelWords.Initialize(levelConfiguration);
 	}
