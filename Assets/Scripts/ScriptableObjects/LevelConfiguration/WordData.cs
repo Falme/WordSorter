@@ -1,8 +1,11 @@
 using System;
 
-[Serializable]
-public class WordData
+namespace WordSorter
 {
-	public string word;
-	public string scrambledWord;
+	[Serializable]
+	public class WordData
+	{
+		public string word;
+		public string scrambledWord;
+	}
 }

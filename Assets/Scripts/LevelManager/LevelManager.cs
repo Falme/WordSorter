@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+namespace WordSorter
 {
-	public static LevelManager Instance { get; private set; }
+	public class LevelManager : MonoBehaviour
+	{
+		public static LevelManager Instance { get; private set; }
 
-	public LevelConfiguration CurrentLevel { get; set; }
-	public LevelConfiguration NextLevel { get; set; }
+		public LevelConfiguration CurrentLevel { get; set; }
+		public LevelConfiguration NextLevel { get; set; }
 
 #if UNITY_EDITOR
 
@@ -20,26 +22,27 @@ public class LevelManager : MonoBehaviour
 
 #endif
 
-	private void Awake()
-	{
-		if (Instance != null && Instance != this)
+		private void Awake()
 		{
-			Destroy(this);
-			return;
+			if (Instance != null && Instance != this)
+			{
+				Destroy(this);
+				return;
+			}
+
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
 		}
 
-		Instance = this;
-		DontDestroyOnLoad(gameObject);
-	}
+		public void LoadScene(string sceneName)
+		{
+			SceneManager.LoadScene(sceneName);
+		}
 
-	public void LoadScene(string sceneName)
-	{
-		SceneManager.LoadScene(sceneName);
-	}
-
-	public void ChangeToNextLevel()
-	{
-		CurrentLevel = NextLevel;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		public void ChangeToNextLevel()
+		{
+			CurrentLevel = NextLevel;
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		}
 	}
 }

@@ -1,46 +1,49 @@
 using TMPro;
 using UnityEngine;
 
-public class Block : MonoBehaviour
+namespace WordSorter
 {
-	[Header("Prefab Reference Values")]
-	[SerializeField] private BlockSettings blockSettings;
-
-	private SpriteRenderer spriteRenderer;
-	private TextMeshPro letterText;
-
-	private char letter = '?';
-	public char Letter
+	public class Block : MonoBehaviour
 	{
-		get => letter;
-		set
+		[Header("Prefab Reference Values")]
+		[SerializeField] private BlockSettings blockSettings;
+
+		private SpriteRenderer spriteRenderer;
+		private TextMeshPro letterText;
+
+		private char letter = '?';
+		public char Letter
 		{
-			letter = value;
-			PrintLetter();
+			get => letter;
+			set
+			{
+				letter = value;
+				PrintLetter();
+			}
 		}
-	}
 
-	private void Awake()
-	{
-		spriteRenderer = GetComponent<SpriteRenderer>();
-		letterText = GetComponentInChildren<TextMeshPro>();
+		private void Awake()
+		{
+			spriteRenderer = GetComponent<SpriteRenderer>();
+			letterText = GetComponentInChildren<TextMeshPro>();
 
-		Highlight(false);
-	}
+			Highlight(false);
+		}
 
-	public void Highlight(bool enable)
-	{
-		spriteRenderer.color = enable ? blockSettings.highlightColor : blockSettings.defaultColor;
-	}
+		public void Highlight(bool enable)
+		{
+			spriteRenderer.color = enable ? blockSettings.highlightColor : blockSettings.defaultColor;
+		}
 
-	public void MoveTo(Vector3 newPosition, Transform newParent)
-	{
-		transform.SetParent(newParent);
-		transform.localPosition = newPosition;
-	}
+		public void MoveTo(Vector3 newPosition, Transform newParent)
+		{
+			transform.SetParent(newParent);
+			transform.localPosition = newPosition;
+		}
 
-	private void PrintLetter()
-	{
-		letterText.text = Letter.ToString();
+		private void PrintLetter()
+		{
+			letterText.text = Letter.ToString();
+		}
 	}
 }

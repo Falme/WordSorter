@@ -1,68 +1,71 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace WordSorter
 {
-	private const string BodyText = "Congratulations! \n To the next Level!";
-	private const string UndefinedLevelErrorMessage =
-		"LevelConfiguration was not set, please check the Level Selection and Level Scriptable Objects";
-
-	[Header("Scene References")]
-	[SerializeField] private ShelfManager shelfManager;
-	[SerializeField] private PanelWords panelWords;
-
-	private LevelConfiguration levelConfiguration;
-
-	private void Start()
+	public class GameManager : MonoBehaviour
 	{
-		levelConfiguration = LevelManager.Instance.CurrentLevel;
+		private const string BodyText = "Congratulations! \n To the next Level!";
+		private const string UndefinedLevelErrorMessage =
+			"LevelConfiguration was not set, please check the Level Selection and Level Scriptable Objects";
 
-		if (levelConfiguration == null)
+		[Header("Scene References")]
+		[SerializeField] private ShelfManager shelfManager;
+		[SerializeField] private PanelWords panelWords;
+
+		private LevelConfiguration levelConfiguration;
+
+		private void Start()
 		{
-			Debug.LogError(UndefinedLevelErrorMessage);
-			return;
-		}
+			levelConfiguration = LevelManager.Instance.CurrentLevel;
 
-		shelfManager.Initialize(levelConfiguration);
-		panelWords.Initialize(levelConfiguration);
-	}
-
-	private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
-	private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
-
-	private void CompareWords(string[] words)
-	{
-		if (AreAllWordsMatching(words, levelConfiguration.shelvesData))
-		{
-			Popup.Instance.OpenPopup(
-				BodyText,
-				PopupType.OK,
-				LevelManager.Instance.ChangeToNextLevel
-			);
-		}
-	}
-
-	private bool AreAllWordsMatching(string[] shelfWords, WordData[] wordDatas)
-	{
-		foreach (WordData wordData in wordDatas)
-		{
-			bool foundMatch = false;
-			string correctWord = wordData.word;
-
-			foreach (string shelfWord in shelfWords)
+			if (levelConfiguration == null)
 			{
-				if (correctWord.Equals(shelfWord))
-					foundMatch = true;
+				Debug.LogError(UndefinedLevelErrorMessage);
+				return;
 			}
 
-			if (!foundMatch) return false;
+			shelfManager.Initialize(levelConfiguration);
+			panelWords.Initialize(levelConfiguration);
 		}
 
-		return true;
-	}
+		private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
+		private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
 
-	public void Restart()
-	{
-		shelfManager.Restart();
-		panelWords.Restart();
+		private void CompareWords(string[] words)
+		{
+			if (AreAllWordsMatching(words, levelConfiguration.shelvesData))
+			{
+				Popup.Instance.OpenPopup(
+					BodyText,
+					PopupType.OK,
+					LevelManager.Instance.ChangeToNextLevel
+				);
+			}
+		}
+
+		private bool AreAllWordsMatching(string[] shelfWords, WordData[] wordDatas)
+		{
+			foreach (WordData wordData in wordDatas)
+			{
+				bool foundMatch = false;
+				string correctWord = wordData.word;
+
+				foreach (string shelfWord in shelfWords)
+				{
+					if (correctWord.Equals(shelfWord))
+						foundMatch = true;
+				}
+
+				if (!foundMatch) return false;
+			}
+
+			return true;
+		}
+
+		public void Restart()
+		{
+			shelfManager.Restart();
+			panelWords.Restart();
+		}
 	}
 }

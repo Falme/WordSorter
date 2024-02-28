@@ -1,62 +1,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelWords : MonoBehaviour
+namespace WordSorter
 {
-	[SerializeField] private GameObject wordItemPrefab;
-	[SerializeField] private Transform topArea, bottomArea;
-
-	private LevelConfiguration levelConfiguration;
-	private List<WordItem> wordItems = new List<WordItem>();
-
-	private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
-	private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
-
-	public void Initialize(LevelConfiguration levelConfiguration)
+	public class PanelWords : MonoBehaviour
 	{
-		this.levelConfiguration = levelConfiguration;
-		InstantiateWordItems();
-	}
+		[SerializeField] private GameObject wordItemPrefab;
+		[SerializeField] private Transform topArea, bottomArea;
 
-	public void InstantiateWordItems()
-	{
-		foreach (WordData wordData in levelConfiguration.shelvesData)
+		private LevelConfiguration levelConfiguration;
+		private List<WordItem> wordItems = new List<WordItem>();
+
+		private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
+		private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
+
+		public void Initialize(LevelConfiguration levelConfiguration)
 		{
-			if (string.IsNullOrEmpty(wordData.word)) continue;
-
-			wordItems.Add(Instantiate(wordItemPrefab, topArea).GetComponent<WordItem>());
-			wordItems[wordItems.Count - 1].Initialize(wordData.word);
-		}
-	}
-
-	private void CompareWords(string[] words)
-	{
-		ClearWords();
-
-		foreach (WordItem wordItem in wordItems)
-		{
-			if (FoundMatch(words, wordItem.Word))
-				wordItem.Highlight(true);
-		}
-	}
-
-	private bool FoundMatch(string[] items, string word)
-	{
-		foreach (string item in items)
-		{
-			if (word.Equals(item))
-				return true;
+			this.levelConfiguration = levelConfiguration;
+			InstantiateWordItems();
 		}
 
-		return false;
+		public void InstantiateWordItems()
+		{
+			foreach (WordData wordData in levelConfiguration.shelvesData)
+			{
+				if (string.IsNullOrEmpty(wordData.word)) continue;
+
+				wordItems.Add(Instantiate(wordItemPrefab, topArea).GetComponent<WordItem>());
+				wordItems[wordItems.Count - 1].Initialize(wordData.word);
+			}
+		}
+
+		private void CompareWords(string[] words)
+		{
+			ClearWords();
+
+			foreach (WordItem wordItem in wordItems)
+			{
+				if (FoundMatch(words, wordItem.Word))
+					wordItem.Highlight(true);
+			}
+		}
+
+		private bool FoundMatch(string[] items, string word)
+		{
+			foreach (string item in items)
+			{
+				if (word.Equals(item))
+					return true;
+			}
+
+			return false;
+		}
+
+		public void ClearWords()
+		{
+			foreach (WordItem wordItem in wordItems)
+				wordItem?.Highlight(false);
+		}
+
+		public void Restart() => ClearWords();
+
 	}
-
-	public void ClearWords()
-	{
-		foreach (WordItem wordItem in wordItems)
-			wordItem?.Highlight(false);
-	}
-
-	public void Restart() => ClearWords();
-
 }

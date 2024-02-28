@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class LevelSelectButton : MonoBehaviour
+namespace WordSorter
 {
-	private const string SceneName = "LevelSelect";
-	private const string BodyText = "Return to Level Selection?";
-
-	public void ReturnToLevelSelection()
+	public class LevelSelectButton : MonoBehaviour
 	{
-		Popup.Instance.OpenPopup(
-			BodyText,
-			PopupType.YES_NO,
-			() => LevelManager.Instance.LoadScene(SceneName)
-		);
+		private const string SceneName = "LevelSelect";
+		private const string BodyText = "Return to Level Selection?";
+
+		public void ReturnToLevelSelection()
+		{
+			Popup.Instance.OpenPopup(
+				BodyText,
+				PopupType.YES_NO,
+				() => LevelManager.Instance.LoadScene(SceneName)
+			);
+		}
 	}
 }

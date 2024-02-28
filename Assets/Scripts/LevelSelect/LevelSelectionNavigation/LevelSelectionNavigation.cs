@@ -2,25 +2,28 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelSelectionNavigation : MonoBehaviour
+namespace WordSorter
 {
-	[SerializeField] private Button buttonLeft, buttonRight;
-
-	private void OnEnable() => LevelList.ChangedWorldNumberEvent += UpdateButtons;
-
-	private void OnDisable() => LevelList.ChangedWorldNumberEvent -= UpdateButtons;
-
-	private void UpdateButtons(int currentWorld, int worldsLength)
+	public class LevelSelectionNavigation : MonoBehaviour
 	{
-		bool left = currentWorld > 0;
-		bool right = currentWorld < worldsLength - 1;
+		[SerializeField] private Button buttonLeft, buttonRight;
 
-		Enable(left, right);
-	}
+		private void OnEnable() => LevelList.ChangedWorldNumberEvent += UpdateButtons;
 
-	public void Enable(bool enableLeft, bool enableRight)
-	{
-		buttonLeft.interactable = enableLeft;
-		buttonRight.interactable = enableRight;
+		private void OnDisable() => LevelList.ChangedWorldNumberEvent -= UpdateButtons;
+
+		private void UpdateButtons(int currentWorld, int worldsLength)
+		{
+			bool left = currentWorld > 0;
+			bool right = currentWorld < worldsLength - 1;
+
+			Enable(left, right);
+		}
+
+		public void Enable(bool enableLeft, bool enableRight)
+		{
+			buttonLeft.interactable = enableLeft;
+			buttonRight.interactable = enableRight;
+		}
 	}
 }
