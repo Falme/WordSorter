@@ -1,11 +1,11 @@
-using System;
 using UnityEngine;
 
 namespace WordSorter
 {
 	public class GameManager : MonoBehaviour
 	{
-		private const string BodyText = "Congratulations! \n To the next Level!";
+		private const string NextLevelBodyText = "Congratulations! \n To the next Level!";
+		private const string LevelSelectBodyText = "Completed The Game! \n To the Level Selection!";
 		private const string UndefinedLevelErrorMessage =
 			"LevelConfiguration was not set, please check the Level Selection and Level Scriptable Objects";
 
@@ -19,11 +19,7 @@ namespace WordSorter
 		{
 			levelConfiguration = LevelManager.Instance.CurrentLevel;
 
-			if (levelConfiguration == null)
-			{
-				Debug.LogError(UndefinedLevelErrorMessage);
-				return;
-			}
+			if (IsLevelUndefined(levelConfiguration)) return;
 
 			shelfManager.Initialize(levelConfiguration);
 			panelWords.Initialize(levelConfiguration);
@@ -46,7 +42,7 @@ namespace WordSorter
 		private void ShowToLevelSelectPopup()
 		{
 			Popup.Instance.OpenPopup(
-					BodyText,
+					LevelSelectBodyText,
 					PopupType.OK,
 					() =>
 					{
@@ -58,7 +54,7 @@ namespace WordSorter
 		private void ShowNextLevelPopup()
 		{
 			Popup.Instance.OpenPopup(
-					BodyText,
+					NextLevelBodyText,
 					PopupType.OK,
 					() =>
 					{
@@ -91,6 +87,17 @@ namespace WordSorter
 		{
 			shelfManager.Restart();
 			panelWords.Restart();
+		}
+
+		private bool IsLevelUndefined(LevelConfiguration levelConfiguration)
+		{
+			if (levelConfiguration == null)
+			{
+				Debug.LogError(UndefinedLevelErrorMessage);
+				return true;
+			}
+
+			return false;
 		}
 	}
 }
