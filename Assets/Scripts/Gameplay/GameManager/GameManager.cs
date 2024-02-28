@@ -46,7 +46,7 @@ namespace WordSorter
 					PopupType.OK,
 					() =>
 					{
-						LevelManager.Instance.LoadScene("LevelSelect");
+						LevelManager.Instance.ToLevelSelect();
 					}
 				);
 		}
@@ -59,7 +59,7 @@ namespace WordSorter
 					() =>
 					{
 						LevelManager.Instance.CurrentLevel = LevelManager.Instance.CurrentLevel.nextLevel;
-						LevelManager.Instance.LoadScene("Gameplay");
+						LevelManager.Instance.ToGameplay();
 					}
 				);
 		}

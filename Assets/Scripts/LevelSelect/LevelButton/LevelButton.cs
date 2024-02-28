@@ -6,7 +6,6 @@ namespace WordSorter
 {
 	public class LevelButton : MonoBehaviour
 	{
-		private const string SceneName = "Gameplay";
 		[SerializeField] private TextMeshProUGUI levelText;
 		[SerializeField] private LevelButtonSettings levelButtonSettings;
 		[SerializeField] private Image levelImage;
@@ -46,7 +45,7 @@ namespace WordSorter
 		public void GoToLevel()
 		{
 			LevelManager.Instance.CurrentLevel = LevelData;
-			LevelManager.Instance.LoadScene(SceneName);
+			LevelManager.Instance.ToGameplay();
 		}
 	}
 }

@@ -9,6 +9,9 @@ namespace WordSorter
 
 		public LevelConfiguration CurrentLevel { get; set; }
 
+		private const string LevelSelect = "LevelSelect";
+		private const string Gameplay = "Gameplay";
+
 #if UNITY_EDITOR
 
 		[SerializeField] private LevelConfiguration debugLevel;
@@ -37,5 +40,8 @@ namespace WordSorter
 		{
 			SceneManager.LoadScene(sceneName);
 		}
+
+		public void ToGameplay() => LoadScene(Gameplay);
+		public void ToLevelSelect() => LoadScene(LevelSelect);
 	}
 }
