@@ -91,9 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordItemPrefab: {fileID: 5762590160134821187, guid: bd47ac28b2d811e44ad77da24e7aab9d, type: 3}
-  wordAreaTop: {fileID: 7227877396969681100}
-  wordAreaBottom: {fileID: 4508256287746703249}
-  levelConfiguration: {fileID: 11400000, guid: 91fa725027ea42a47bc21b23d5bb776a, type: 2}
+  topArea: {fileID: 7227877396969681100}
+  bottomArea: {fileID: 4508256287746703249}
 --- !u!1 &4452100459953268020
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +105,7 @@ GameObject:
   - component: {fileID: 7170105491403848245}
   - component: {fileID: 3552149494767789648}
   m_Layer: 5
-  m_Name: PanelWordsTop
+  m_Name: TopArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,7 +174,7 @@ GameObject:
   - component: {fileID: 2981552166712547690}
   - component: {fileID: 3080868391315549956}
   m_Layer: 5
-  m_Name: PanelWordsBottom
+  m_Name: BottomArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

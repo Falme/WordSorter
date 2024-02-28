@@ -1,14 +1,13 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PanelWords : MonoBehaviour
 {
 	[SerializeField] private GameObject wordItemPrefab;
-	[SerializeField] private Transform wordAreaTop, wordAreaBottom;
+	[SerializeField] private Transform topArea, bottomArea;
 
 	private LevelConfiguration levelConfiguration;
-	private List<WordItem> wordItems;
+	private List<WordItem> wordItems = new List<WordItem>();
 
 	private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
 	private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
@@ -16,19 +15,17 @@ public class PanelWords : MonoBehaviour
 	public void Initialize(LevelConfiguration levelConfiguration)
 	{
 		this.levelConfiguration = levelConfiguration;
-		GenerateWordItems();
+		InstantiateWordItems();
 	}
 
-	public void GenerateWordItems()
+	public void InstantiateWordItems()
 	{
-		wordItems = new List<WordItem>();
-
-		for (int a = 0; a < levelConfiguration.shelvesData.Length; a++)
+		foreach (WordData wordData in levelConfiguration.shelvesData)
 		{
-			if (levelConfiguration.shelvesData[a].word.Equals(string.Empty)) continue;
+			if (string.IsNullOrEmpty(wordData.word)) continue;
 
-			wordItems.Add(Instantiate(wordItemPrefab, wordAreaTop).GetComponent<WordItem>());
-			wordItems[wordItems.Count - 1].Initialize(levelConfiguration.shelvesData[a].word);
+			wordItems.Add(Instantiate(wordItemPrefab, topArea).GetComponent<WordItem>());
+			wordItems[wordItems.Count - 1].Initialize(wordData.word);
 		}
 	}
 
@@ -36,31 +33,30 @@ public class PanelWords : MonoBehaviour
 	{
 		ClearWords();
 
-		for (int a = 0; a < wordItems.Count; a++)
+		foreach (WordItem wordItem in wordItems)
 		{
-			for (int b = 0; b < words.Length; b++)
-			{
-				if (wordItems[a].Word.Equals(words[b]))
-				{
-					wordItems[a].Highlight(true);
-					break;
-				}
-			}
+			if (FoundMatch(words, wordItem.Word))
+				wordItem.Highlight(true);
 		}
+	}
+
+	private bool FoundMatch(string[] items, string word)
+	{
+		foreach (string item in items)
+		{
+			if (word.Equals(item))
+				return true;
+		}
+
+		return false;
 	}
 
 	public void ClearWords()
 	{
-		for (int a = 0; a < wordItems.Count; a++)
-		{
-			if (wordItems[a] != null)
-				wordItems[a].Highlight(false);
-		}
+		foreach (WordItem wordItem in wordItems)
+			wordItem?.Highlight(false);
 	}
 
-	public void Restart()
-	{
-		ClearWords();
-	}
+	public void Restart() => ClearWords();
 
 }
