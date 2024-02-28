@@ -12,6 +12,7 @@ public class LevelButton : MonoBehaviour
 	private Button button;
 
 	public LevelConfiguration LevelData { get; set; }
+	public LevelConfiguration NextLevelData { get; set; }
 
 	private void Awake()
 	{
@@ -43,6 +44,7 @@ public class LevelButton : MonoBehaviour
 	public void GoToLevel()
 	{
 		LevelManager.Instance.CurrentLevel = LevelData;
+		LevelManager.Instance.NextLevel = NextLevelData;
 		LevelManager.Instance.LoadScene(SceneName);
 	}
 }

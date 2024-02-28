@@ -18,5 +18,6 @@ public class WorldSelectData
 public class LevelSelectData
 {
 	public LevelConfiguration levelData;
+	public LevelConfiguration nextLevel;
 	public bool isEnabled;
 }
