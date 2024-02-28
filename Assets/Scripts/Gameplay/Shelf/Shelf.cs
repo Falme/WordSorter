@@ -12,7 +12,7 @@ namespace WordSorter
 		public static event SelectShelfDelegate SelectShelfEvent;
 		#endregion
 
-		[Header("Prefab Reference Values")]
+
 		[SerializeField] private Block blockPrefab;
 		[SerializeField] private Transform blocksArea, board;
 

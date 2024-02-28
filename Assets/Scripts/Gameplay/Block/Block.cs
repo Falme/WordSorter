@@ -5,7 +5,6 @@ namespace WordSorter
 {
 	public class Block : MonoBehaviour
 	{
-		[Header("Prefab Reference Values")]
 		[SerializeField] private BlockSettings blockSettings;
 
 		private SpriteRenderer spriteRenderer;
