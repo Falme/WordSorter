@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	private const string BodyText = "Congratulations! \n To the next Level!";
+	private const string UndefinedLevelErrorMessage =
+		"LevelConfiguration was not set, please check the Level Selection and Level Scriptable Objects";
+
 	[Header("Scene References")]
 	[SerializeField] private ShelfManager shelfManager;
 	[SerializeField] private PanelWords panelWords;
@@ -14,8 +18,7 @@ public class GameManager : MonoBehaviour
 
 		if (levelConfiguration == null)
 		{
-			Debug.LogError("LevelConfiguration was not set, please check " +
-							"the Level Selection and Level Scriptable Objects");
+			Debug.LogError(UndefinedLevelErrorMessage);
 			return;
 		}
 
@@ -28,25 +31,30 @@ public class GameManager : MonoBehaviour
 
 	private void CompareWords(string[] words)
 	{
-		if (CheckIfAllWordsMatch(words, levelConfiguration.shelvesData))
+		if (AreAllWordsMatching(words, levelConfiguration.shelvesData))
 		{
-			Popup.Instance.OpenPopup("Congratulations! \n To the next Level!", PopupType.OK, () =>
-			{
-				LevelManager.Instance.ChangeToNextLevel();
-			});
+			Popup.Instance.OpenPopup(
+				BodyText,
+				PopupType.OK,
+				LevelManager.Instance.ChangeToNextLevel
+			);
 		}
 	}
 
-	private bool CheckIfAllWordsMatch(string[] shelfWords, WordData[] correctWords)
+	private bool AreAllWordsMatching(string[] shelfWords, WordData[] wordDatas)
 	{
-		for (int a = 0; a < correctWords.Length; a++)
+		foreach (WordData wordData in wordDatas)
 		{
-			bool found = false;
-			for (int b = 0; b < shelfWords.Length; b++)
-				if (correctWords[a].word.Equals(shelfWords[b]))
-					found = true;
+			bool foundMatch = false;
+			string correctWord = wordData.word;
 
-			if (!found) return false;
+			foreach (string shelfWord in shelfWords)
+			{
+				if (correctWord.Equals(shelfWord))
+					foundMatch = true;
+			}
+
+			if (!foundMatch) return false;
 		}
 
 		return true;
