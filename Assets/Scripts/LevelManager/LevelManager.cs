@@ -8,17 +8,16 @@ namespace WordSorter
 		public static LevelManager Instance { get; private set; }
 
 		public LevelConfiguration CurrentLevel { get; set; }
-		public LevelConfiguration NextLevel { get; set; }
 
 #if UNITY_EDITOR
 
-	[SerializeField] private LevelConfiguration debugLevel;
+		[SerializeField] private LevelConfiguration debugLevel;
 
-	private void Start()
-	{
-		if (debugLevel != null)
-			CurrentLevel = debugLevel;
-	}
+		private void Start()
+		{
+			if (debugLevel != null)
+				CurrentLevel = debugLevel;
+		}
 
 #endif
 
@@ -37,12 +36,6 @@ namespace WordSorter
 		public void LoadScene(string sceneName)
 		{
 			SceneManager.LoadScene(sceneName);
-		}
-
-		public void ChangeToNextLevel()
-		{
-			CurrentLevel = NextLevel;
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 }

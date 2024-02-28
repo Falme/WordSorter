@@ -7,5 +7,6 @@ namespace WordSorter
 	{
 		public int shelfCapacity;
 		public WordData[] shelvesData;
+		public LevelConfiguration nextLevel;
 	}
 }

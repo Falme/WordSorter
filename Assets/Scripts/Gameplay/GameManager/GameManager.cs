@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace WordSorter
@@ -35,12 +36,36 @@ namespace WordSorter
 		{
 			if (AreAllWordsMatching(words, levelConfiguration.shelvesData))
 			{
-				Popup.Instance.OpenPopup(
+				if (LevelManager.Instance.CurrentLevel.nextLevel != null)
+					ShowNextLevelPopup();
+				else
+					ShowToLevelSelectPopup();
+			}
+		}
+
+		private void ShowToLevelSelectPopup()
+		{
+			Popup.Instance.OpenPopup(
 					BodyText,
 					PopupType.OK,
-					LevelManager.Instance.ChangeToNextLevel
+					() =>
+					{
+						LevelManager.Instance.LoadScene("LevelSelect");
+					}
 				);
-			}
+		}
+
+		private void ShowNextLevelPopup()
+		{
+			Popup.Instance.OpenPopup(
+					BodyText,
+					PopupType.OK,
+					() =>
+					{
+						LevelManager.Instance.CurrentLevel = LevelManager.Instance.CurrentLevel.nextLevel;
+						LevelManager.Instance.LoadScene("Gameplay");
+					}
+				);
 		}
 
 		private bool AreAllWordsMatching(string[] shelfWords, WordData[] wordDatas)

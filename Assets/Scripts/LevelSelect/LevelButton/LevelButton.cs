@@ -46,7 +46,6 @@ namespace WordSorter
 		public void GoToLevel()
 		{
 			LevelManager.Instance.CurrentLevel = LevelData;
-			LevelManager.Instance.NextLevel = NextLevelData;
 			LevelManager.Instance.LoadScene(SceneName);
 		}
 	}
