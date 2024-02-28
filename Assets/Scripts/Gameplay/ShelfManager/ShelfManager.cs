@@ -33,14 +33,14 @@ namespace WordSorter
 		{
 			shelves = new Shelf[levelConfiguration.shelvesData.Length];
 
-			for (int i = 0; i < shelves.Length; i++)
+			for (int a = 0; a < shelves.Length; a++)
 			{
 				var shelf = Instantiate(shelfPrefab, transform).GetComponent<Shelf>();
-				shelf.transform.localPosition = new Vector3(0f, i * -shelfSettings.verticalSpacing);
+				shelf.transform.localPosition = new Vector3(0f, a * -shelfSettings.verticalSpacing);
 
-				shelf.Initialize(shelfSettings, levelConfiguration, i);
+				shelf.Initialize(shelfSettings, levelConfiguration, a);
 
-				shelves[i] = shelf;
+				shelves[a] = shelf;
 			}
 		}
 
