@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace WordSorter
@@ -107,6 +106,5 @@ namespace WordSorter
 
 			return unbalancedShelves;
 		}
-
 	}
 }

@@ -1,15 +1,19 @@
-using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace WordSorter
 {
 	public class Shelf : MonoBehaviour
 	{
+
+		private const string WordBiggerThanShelfMessage = "Number of Letters in a Shelf was Exceeded at GenerateBlocks \n Make Sure to not put a longer word to a smaller shelf";
+
 		#region Events
 		public delegate void SelectShelfDelegate(Shelf shelf);
 		public static event SelectShelfDelegate SelectShelfEvent;
+
 		#endregion
 
 
@@ -122,8 +126,7 @@ namespace WordSorter
 		{
 			if (word.Length > shelfSize)
 			{
-				Debug.LogError("Number of Letters in a Shelf was Exceeded at GenerateBlocks \n " +
-								"Make Sure to not put a longer word to a smaller shelf");
+				Debug.LogError(WordBiggerThanShelfMessage);
 				return true;
 			}
 			return false;
@@ -138,7 +141,11 @@ namespace WordSorter
 			}
 		}
 
-		public void OnMouseDown() => SelectShelf();
+		public void OnMouseDown()
+		{
+			if (!EventSystem.current.IsPointerOverGameObject())
+				SelectShelf();
+		}
 
 	}
 }
