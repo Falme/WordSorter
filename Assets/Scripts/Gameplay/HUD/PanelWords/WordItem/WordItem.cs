@@ -14,9 +14,7 @@ public class WordItem : MonoBehaviour
 
 	public void Initialize(string word)
 	{
-		Word = word;
-		text.text = word;
-
+		text.text = Word = word;
 		Highlight(false);
 	}
 
