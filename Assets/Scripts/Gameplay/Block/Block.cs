@@ -7,6 +7,7 @@ public class Block : MonoBehaviour
 	[SerializeField] private BlockSettings blockSettings;
 
 	private SpriteRenderer spriteRenderer;
+	private TextMeshPro letterText;
 
 	private char letter = '?';
 	public char Letter
@@ -22,6 +23,7 @@ public class Block : MonoBehaviour
 	private void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		letterText = GetComponentInChildren<TextMeshPro>();
 
 		Highlight(false);
 	}
@@ -39,6 +41,6 @@ public class Block : MonoBehaviour
 
 	private void PrintLetter()
 	{
-		GetComponentInChildren<TextMeshPro>().text = Letter.ToString();
+		letterText.text = Letter.ToString();
 	}
 }
