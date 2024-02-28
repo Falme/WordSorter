@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
+	private const string SceneName = "Gameplay";
 	[SerializeField] private TextMeshProUGUI levelText;
 	[SerializeField] private LevelButtonSettings levelButtonSettings;
 	[SerializeField] private Image levelImage;
 
 	private Button button;
 
-	public string SceneName { get; set; }
+	public LevelConfiguration LevelData { get; set; }
 
 	private void Awake()
 	{
@@ -41,6 +42,7 @@ public class LevelButton : MonoBehaviour
 
 	public void GoToLevel()
 	{
+		LevelManager.Instance.CurrentLevel = LevelData;
 		LevelManager.Instance.LoadScene(SceneName);
 	}
 }

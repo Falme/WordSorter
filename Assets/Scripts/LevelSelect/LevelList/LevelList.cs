@@ -50,7 +50,7 @@ public class LevelList : MonoBehaviour
 				continue;
 			}
 			levelButtons[a].ChangeStatus(levelSelectionConfiguration.worlds[world].levels[a].isEnabled);
-			levelButtons[a].SceneName = levelSelectionConfiguration.worlds[world].levels[a].sceneName;
+			levelButtons[a].LevelData = levelSelectionConfiguration.worlds[world].levels[a].levelData;
 		}
 
 	}
