@@ -22,6 +22,18 @@ MonoBehaviour:
     m_Localized: Selecionar Fase
     m_Metadata:
       m_Items: []
+  - m_Id: 785430040576
+    m_Localized: ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29695563747328
+    m_Localized: sim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29785489625088
+    m_Localized: "n\xE3o"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
