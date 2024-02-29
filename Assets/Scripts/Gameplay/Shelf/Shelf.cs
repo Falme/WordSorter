@@ -31,10 +31,10 @@ namespace WordSorter
 
 		public int ShelfLength => nextBlockIndex;
 
-		public void Initialize(ShelfSettings shelfSettings, Level levelConfiguration, int index)
+		public void Initialize(ShelfSettings shelfSettings, Level level, int index)
 		{
-			InitializeBlockGeneration(shelfSettings, levelConfiguration, index);
-			InitializeBoard(shelfSettings, levelConfiguration);
+			InitializeBlockGeneration(shelfSettings, level, index);
+			InitializeBoard(shelfSettings, level);
 		}
 
 		private void InitializeBlockGeneration(ShelfSettings shelfSettings, Level levelConfiguration, int index)

@@ -13,15 +13,15 @@ namespace WordSorter
 		[SerializeField] private GameObject shelfPrefab;
 		[SerializeField] private ShelfSettings shelfSettings;
 
-		private Level levelConfiguration;
+		private Level level;
 
 		private Shelf lastSelectedShelf = null;
 
 		private Shelf[] shelves;
 
-		public void Initialize(Level levelConfiguration)
+		public void Initialize(Level level)
 		{
-			this.levelConfiguration = levelConfiguration;
+			this.level = level;
 			InstantiateShelves();
 		}
 
@@ -30,14 +30,14 @@ namespace WordSorter
 
 		private void InstantiateShelves()
 		{
-			shelves = new Shelf[levelConfiguration.shelvesData.Length];
+			shelves = new Shelf[level.shelvesData.Length];
 
 			for (int a = 0; a < shelves.Length; a++)
 			{
 				var shelf = Instantiate(shelfPrefab, transform).GetComponent<Shelf>();
 				shelf.transform.localPosition = new Vector3(0f, a * -shelfSettings.verticalSpacing);
 
-				shelf.Initialize(shelfSettings, levelConfiguration, a);
+				shelf.Initialize(shelfSettings, level, a);
 
 				shelves[a] = shelf;
 			}
@@ -98,7 +98,7 @@ namespace WordSorter
 			for (int a = 0; a < shelves.Length; a++)
 			{
 				int shelfLength = shelves[a].ShelfLength;
-				int scrambledWordLength = levelConfiguration.shelvesData[a].scrambledWord.Length;
+				int scrambledWordLength = level.shelvesData[a].scrambledWord.Length;
 
 				if (shelfLength > scrambledWordLength) unbalancedShelves[0] = shelves[a];
 				if (shelfLength < scrambledWordLength) unbalancedShelves[1] = shelves[a];

@@ -13,7 +13,6 @@ namespace WordSorter
 		private Button button;
 
 		public Level LevelData { get; set; }
-		public Level NextLevelData { get; set; }
 
 		private void Awake()
 		{

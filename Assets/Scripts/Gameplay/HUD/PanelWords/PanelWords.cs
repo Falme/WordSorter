@@ -8,21 +8,21 @@ namespace WordSorter
 		[SerializeField] private GameObject wordItemPrefab;
 		[SerializeField] private Transform topArea, bottomArea;
 
-		private Level levelConfiguration;
+		private Level level;
 		private List<WordItem> wordItems = new List<WordItem>();
 
 		private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
 		private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
 
-		public void Initialize(Level levelConfiguration)
+		public void Initialize(Level level)
 		{
-			this.levelConfiguration = levelConfiguration;
+			this.level = level;
 			InstantiateWordItems();
 		}
 
 		public void InstantiateWordItems()
 		{
-			foreach (WordData wordData in levelConfiguration.shelvesData)
+			foreach (WordData wordData in level.shelvesData)
 			{
 				if (string.IsNullOrEmpty(wordData.word)) continue;
 

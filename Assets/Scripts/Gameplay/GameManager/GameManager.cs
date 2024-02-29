@@ -13,16 +13,16 @@ namespace WordSorter
 		[SerializeField] private ShelfManager shelfManager;
 		[SerializeField] private PanelWords panelWords;
 
-		private Level levelConfiguration;
+		private Level level;
 
 		private void Start()
 		{
-			levelConfiguration = LevelManager.Instance.CurrentLevel;
+			level = LevelManager.Instance.CurrentLevel;
 
-			if (IsLevelUndefined(levelConfiguration)) return;
+			if (IsLevelUndefined(level)) return;
 
-			shelfManager.Initialize(levelConfiguration);
-			panelWords.Initialize(levelConfiguration);
+			shelfManager.Initialize(level);
+			panelWords.Initialize(level);
 		}
 
 		private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
@@ -30,7 +30,7 @@ namespace WordSorter
 
 		private void CompareWords(string[] words)
 		{
-			if (AreAllWordsMatching(words, levelConfiguration.shelvesData))
+			if (AreAllWordsMatching(words, level.shelvesData))
 			{
 				if (LevelManager.Instance.CurrentLevel.nextLevel != null)
 					ShowNextLevelPopup();
