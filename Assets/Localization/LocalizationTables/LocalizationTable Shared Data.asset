@@ -31,6 +31,14 @@ MonoBehaviour:
     m_Key: no
     m_Metadata:
       m_Items: []
+  - m_Id: 36127642177536
+    m_Key: gameplay_popup_body_restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347465650176
+    m_Key: gameplay_popup_body_levelselect
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

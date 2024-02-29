@@ -4,7 +4,7 @@ namespace WordSorter
 {
 	public class LevelSelectButton : MonoBehaviour
 	{
-		private const string BodyText = "Return to Level Selection?";
+		private const string BodyText = "gameplay_popup_body_levelselect";
 
 		public void ReturnToLevelSelection()
 		{

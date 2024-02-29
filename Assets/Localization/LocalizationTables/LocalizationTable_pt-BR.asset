@@ -34,6 +34,14 @@ MonoBehaviour:
     m_Localized: "n\xE3o"
     m_Metadata:
       m_Items: []
+  - m_Id: 36127642177536
+    m_Localized: "Recome\xE7ar a fase desde o come\xE7o?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347465650176
+    m_Localized: "Retornar a Sele\xE7\xE3o de Fase?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -34,6 +34,14 @@ MonoBehaviour:
     m_Localized: no
     m_Metadata:
       m_Items: []
+  - m_Id: 36127642177536
+    m_Localized: Restart the level from the beginning?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347465650176
+    m_Localized: Return to Level Selection?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
