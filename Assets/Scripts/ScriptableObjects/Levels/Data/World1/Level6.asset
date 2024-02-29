@@ -10,13 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34bfedd9270a3b34ba2334b4d716f1d9, type: 3}
-  m_Name: LevelConfiguration
+  m_Name: Level6
   m_EditorClassIdentifier: 
-  shelfCapacity: 4
+  shelfCapacity: 6
   shelvesData:
-  - word: casa
-    scrambledWord: csaa
-  - word: moda
-    scrambledWord: omda
+  - word: zelo
+    scrambledWord: eool
+  - word: doce
+    scrambledWord: eczd
   - word: 
     scrambledWord: 
+  - word: 
+    scrambledWord: 
+  - word: 
+    scrambledWord: 
+  nextLevel: {fileID: 11400000, guid: f12727eb5dc43f54ea74f8bc90514e1a, type: 2}

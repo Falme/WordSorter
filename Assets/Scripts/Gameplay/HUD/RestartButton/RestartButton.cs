@@ -1,14 +1,19 @@
 using UnityEngine;
 
-public class RestartButton : MonoBehaviour
+namespace WordSorter
 {
-	[SerializeField] private GameManager gameManager;
-
-	public void RestartLevel()
+	public class RestartButton : MonoBehaviour
 	{
-		Popup.Instance.OpenPopup("Restart the level from the beginning?", PopupType.YES_NO, () =>
+		private const string BodyText = "Restart the level from the beginning?";
+		[SerializeField] private GameManager gameManager;
+
+		public void RestartLevel()
 		{
-			gameManager.Restart();
-		});
+			Popup.Instance.OpenPopup(
+				BodyText,
+				PopupType.YES_NO,
+				gameManager.Restart
+				);
+		}
 	}
 }

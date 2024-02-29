@@ -1,60 +1,103 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace WordSorter
 {
-	[Header("Scene References")]
-	[SerializeField] private ShelfManager shelfManager;
-	[SerializeField] private PanelWords panelWords;
-
-	private LevelConfiguration levelConfiguration;
-
-	private void Start()
+	public class GameManager : MonoBehaviour
 	{
-		levelConfiguration = LevelManager.Instance.CurrentLevel;
+		private const string NextLevelBodyText = "Congratulations! \n To the next Level!";
+		private const string LevelSelectBodyText = "Completed The Game! \n To the Level Selection!";
+		private const string UndefinedLevelErrorMessage =
+			"LevelConfiguration was not set, please check the Level Selection and Level Scriptable Objects";
 
-		if (levelConfiguration == null)
+		[Header("Scene References")]
+		[SerializeField] private ShelfManager shelfManager;
+		[SerializeField] private PanelWords panelWords;
+
+		private Level level;
+
+		private void Start()
 		{
-			Debug.LogError("LevelConfiguration was not set, please check " +
-							"the Level Selection and Level Scriptable Objects");
-			return;
+			level = LevelManager.Instance.CurrentLevel;
+
+			if (IsLevelUndefined(level)) return;
+
+			shelfManager.Initialize(level);
+			panelWords.Initialize(level);
 		}
 
-		shelfManager.Initialize(levelConfiguration);
-		panelWords.Initialize(levelConfiguration);
-	}
+		private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
+		private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
 
-	private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
-	private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
-
-	private void CompareWords(string[] words)
-	{
-		if (CheckIfAllWordsMatch(words, levelConfiguration.shelvesData))
+		private void CompareWords(string[] words)
 		{
-			Popup.Instance.OpenPopup("Congratulations! \n To the next Level!", PopupType.OK, () =>
+			if (AreAllWordsMatching(words, level.shelvesData))
 			{
-				LevelManager.Instance.ChangeToNextLevel();
-			});
+				if (LevelManager.Instance.CurrentLevel.nextLevel != null)
+					ShowNextLevelPopup();
+				else
+					ShowToLevelSelectPopup();
+			}
 		}
-	}
 
-	private bool CheckIfAllWordsMatch(string[] shelfWords, WordData[] correctWords)
-	{
-		for (int a = 0; a < correctWords.Length; a++)
+		private void ShowToLevelSelectPopup()
 		{
-			bool found = false;
-			for (int b = 0; b < shelfWords.Length; b++)
-				if (correctWords[a].word.Equals(shelfWords[b]))
-					found = true;
-
-			if (!found) return false;
+			Popup.Instance.OpenPopup(
+					LevelSelectBodyText,
+					PopupType.OK,
+					() =>
+					{
+						LevelManager.Instance.ToLevelSelect();
+					}
+				);
 		}
 
-		return true;
-	}
+		private void ShowNextLevelPopup()
+		{
+			Popup.Instance.OpenPopup(
+					NextLevelBodyText,
+					PopupType.OK,
+					() =>
+					{
+						LevelManager.Instance.CurrentLevel = LevelManager.Instance.CurrentLevel.nextLevel;
+						LevelManager.Instance.ToGameplay();
+					}
+				);
+		}
 
-	public void Restart()
-	{
-		shelfManager.Restart();
-		panelWords.Restart();
+		private bool AreAllWordsMatching(string[] shelfWords, WordData[] wordDatas)
+		{
+			foreach (WordData wordData in wordDatas)
+			{
+				bool foundMatch = false;
+				string correctWord = wordData.word;
+
+				foreach (string shelfWord in shelfWords)
+				{
+					if (correctWord.Equals(shelfWord))
+						foundMatch = true;
+				}
+
+				if (!foundMatch) return false;
+			}
+
+			return true;
+		}
+
+		public void Restart()
+		{
+			shelfManager.Restart();
+			panelWords.Restart();
+		}
+
+		private bool IsLevelUndefined(Level levelConfiguration)
+		{
+			if (levelConfiguration == null)
+			{
+				Debug.LogError(UndefinedLevelErrorMessage);
+				return true;
+			}
+
+			return false;
+		}
 	}
 }

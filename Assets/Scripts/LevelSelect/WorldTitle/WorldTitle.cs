@@ -1,19 +1,22 @@
 using TMPro;
 using UnityEngine;
 
-public class WorldTitle : MonoBehaviour
+namespace WordSorter
 {
-	private TextMeshProUGUI text;
-
-	private void OnEnable() => LevelList.SelectedWorldTitleEvent += UpdateWorldTitle;
-
-	private void OnDisable() => LevelList.SelectedWorldTitleEvent -= UpdateWorldTitle;
-
-	private void UpdateWorldTitle(string worldName)
+	public class WorldTitle : MonoBehaviour
 	{
-		if (text == null)
-			text = GetComponentInChildren<TextMeshProUGUI>();
+		private TextMeshProUGUI text;
 
-		text.text = worldName;
+		private void OnEnable() => LevelList.SelectedWorldTitleEvent += UpdateWorldTitle;
+
+		private void OnDisable() => LevelList.SelectedWorldTitleEvent -= UpdateWorldTitle;
+
+		private void UpdateWorldTitle(string worldName)
+		{
+			if (text == null)
+				text = GetComponentInChildren<TextMeshProUGUI>();
+
+			text.text = worldName;
+		}
 	}
 }

@@ -1,66 +1,65 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelWords : MonoBehaviour
+namespace WordSorter
 {
-	[SerializeField] private GameObject wordItemPrefab;
-	[SerializeField] private Transform wordAreaTop, wordAreaBottom;
-
-	private LevelConfiguration levelConfiguration;
-	private List<WordItem> wordItems;
-
-	private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
-	private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
-
-	public void Initialize(LevelConfiguration levelConfiguration)
+	public class PanelWords : MonoBehaviour
 	{
-		this.levelConfiguration = levelConfiguration;
-		GenerateWordItems();
-	}
+		[SerializeField] private GameObject wordItemPrefab;
+		[SerializeField] private Transform topArea, bottomArea;
 
-	public void GenerateWordItems()
-	{
-		wordItems = new List<WordItem>();
+		private Level level;
+		private List<WordItem> wordItems = new List<WordItem>();
 
-		for (int a = 0; a < levelConfiguration.shelvesData.Length; a++)
+		private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
+		private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
+
+		public void Initialize(Level level)
 		{
-			if (levelConfiguration.shelvesData[a].word.Equals(string.Empty)) continue;
-
-			wordItems.Add(Instantiate(wordItemPrefab, wordAreaTop).GetComponent<WordItem>());
-			wordItems[wordItems.Count - 1].Initialize(levelConfiguration.shelvesData[a].word);
+			this.level = level;
+			InstantiateWordItems();
 		}
-	}
 
-	private void CompareWords(string[] words)
-	{
-		ClearWords();
-
-		for (int a = 0; a < wordItems.Count; a++)
+		public void InstantiateWordItems()
 		{
-			for (int b = 0; b < words.Length; b++)
+			foreach (WordData wordData in level.shelvesData)
 			{
-				if (wordItems[a].Word.Equals(words[b]))
-				{
-					wordItems[a].Highlight(true);
-					break;
-				}
+				if (string.IsNullOrEmpty(wordData.word)) continue;
+
+				wordItems.Add(Instantiate(wordItemPrefab, topArea).GetComponent<WordItem>());
+				wordItems[wordItems.Count - 1].Initialize(wordData.word);
 			}
 		}
-	}
 
-	public void ClearWords()
-	{
-		for (int a = 0; a < wordItems.Count; a++)
+		private void CompareWords(string[] words)
 		{
-			if (wordItems[a] != null)
-				wordItems[a].Highlight(false);
+			ClearWords();
+
+			foreach (WordItem wordItem in wordItems)
+			{
+				if (FoundMatch(words, wordItem.Word))
+					wordItem.Highlight(true);
+			}
 		}
-	}
 
-	public void Restart()
-	{
-		ClearWords();
-	}
+		private bool FoundMatch(string[] items, string word)
+		{
+			foreach (string item in items)
+			{
+				if (word.Equals(item))
+					return true;
+			}
 
+			return false;
+		}
+
+		public void ClearWords()
+		{
+			foreach (WordItem wordItem in wordItems)
+				wordItem?.Highlight(false);
+		}
+
+		public void Restart() => ClearWords();
+
+	}
 }

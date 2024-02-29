@@ -2,49 +2,49 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelButton : MonoBehaviour
+namespace WordSorter
 {
-	private const string SceneName = "Gameplay";
-	[SerializeField] private TextMeshProUGUI levelText;
-	[SerializeField] private LevelButtonSettings levelButtonSettings;
-	[SerializeField] private Image levelImage;
-
-	private Button button;
-
-	public LevelConfiguration LevelData { get; set; }
-	public LevelConfiguration NextLevelData { get; set; }
-
-	private void Awake()
+	public class LevelButton : MonoBehaviour
 	{
-		button = GetComponent<Button>();
+		[SerializeField] private TextMeshProUGUI levelText;
+		[SerializeField] private LevelButtonSettings levelButtonSettings;
+		[SerializeField] private Image levelImage;
 
-		ChangeNumber(transform.GetSiblingIndex() + 1);
-	}
+		private Button button;
 
-	public void ChangeNumber(int levelNumber)
-	{
-		levelText.text = levelNumber.ToString();
-	}
+		public Level LevelData { get; set; }
 
-	public void ChangeStatus(bool enable)
-	{
-		button.interactable = enable;
+		private void Awake()
+		{
+			button = GetComponent<Button>();
 
-		levelImage.sprite = enable ? levelButtonSettings.spriteEnabled : levelButtonSettings.spriteDisabled;
-		levelImage.color = enable ? levelButtonSettings.colorEnabled : levelButtonSettings.colorDisabled;
+			ChangeNumber(transform.GetSiblingIndex() + 1);
+		}
 
-		ShowText(enable);
-	}
+		public void ChangeNumber(int levelNumber)
+		{
+			levelText.text = levelNumber.ToString();
+		}
 
-	public void ShowText(bool enable)
-	{
-		levelText.enabled = enable;
-	}
+		public void ChangeStatus(bool enable)
+		{
+			button.interactable = enable;
 
-	public void GoToLevel()
-	{
-		LevelManager.Instance.CurrentLevel = LevelData;
-		LevelManager.Instance.NextLevel = NextLevelData;
-		LevelManager.Instance.LoadScene(SceneName);
+			levelImage.sprite = enable ? levelButtonSettings.spriteEnabled : levelButtonSettings.spriteDisabled;
+			levelImage.color = enable ? levelButtonSettings.colorEnabled : levelButtonSettings.colorDisabled;
+
+			ShowText(enable);
+		}
+
+		public void ShowText(bool enable)
+		{
+			levelText.enabled = enable;
+		}
+
+		public void GoToLevel()
+		{
+			LevelManager.Instance.CurrentLevel = LevelData;
+			LevelManager.Instance.ToGameplay();
+		}
 	}
 }
