@@ -98,7 +98,7 @@ namespace WordSorter
 			for (int a = 0; a < shelves.Length; a++)
 			{
 				int shelfLength = shelves[a].ShelfLength;
-				int scrambledWordLength = level.shelvesData[a].scrambledWord.Length;
+				int scrambledWordLength = level.shelvesData[a].TranslatedScrambledWord.Length;
 
 				if (shelfLength > scrambledWordLength) unbalancedShelves[0] = shelves[a];
 				if (shelfLength < scrambledWordLength) unbalancedShelves[1] = shelves[a];

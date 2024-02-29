@@ -69,7 +69,7 @@ namespace WordSorter
 			foreach (WordData wordData in wordDatas)
 			{
 				bool foundMatch = false;
-				string correctWord = wordData.word;
+				string correctWord = wordData.TranslatedWord;
 
 				foreach (string shelfWord in shelfWords)
 				{

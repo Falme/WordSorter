@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfCapacity: 4
   shelvesData:
-  - word: foto
-    scrambledWord: daoo
-  - word: doze
-    scrambledWord: rzto
-  - word: vara
-    scrambledWord: fvea
+  - word: word_level_2_1_correct
+    scrambledWord: word_level_2_1_scramble
+  - word: word_level_2_2_correct
+    scrambledWord: word_level_2_2_scramble
+  - word: word_level_2_3_correct
+    scrambledWord: word_level_2_3_scramble
   - word: 
     scrambledWord: 
   - word: 

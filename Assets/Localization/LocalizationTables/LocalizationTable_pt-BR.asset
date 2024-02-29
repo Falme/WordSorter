@@ -42,6 +42,14 @@ MonoBehaviour:
     m_Localized: "Retornar a Sele\xE7\xE3o de Fase?"
     m_Metadata:
       m_Items: []
+  - m_Id: 37983089020928
+    m_Localized: Campos Verdes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38071857270784
+    m_Localized: Montanhas
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -27,7 +27,7 @@ namespace WordSorter
 				if (string.IsNullOrEmpty(wordData.word)) continue;
 
 				wordItems.Add(Instantiate(wordItemPrefab, topArea).GetComponent<WordItem>());
-				wordItems[wordItems.Count - 1].Initialize(wordData.word);
+				wordItems[wordItems.Count - 1].Initialize(wordData.TranslatedWord);
 			}
 		}
 

@@ -5,12 +5,15 @@ namespace WordSorter
 {
 	public static class Localization
 	{
-		public static string GetLocalizedMessage(string message)
-		{
-			var exists = LocalizationSettings.StringDatabase.GetTable("LocalizationTable").GetEntry(message);
+		private const string TableReference = "LocalizationTable";
 
-			if (exists != null && !string.IsNullOrEmpty(exists.GetLocalizedString()))
-				return LocalizationSettings.StringDatabase.GetLocalizedString("LocalizationTable", message);
+		public static string GetLocalizedMessage(string message, string tableReference = TableReference)
+		{
+			var database = LocalizationSettings.StringDatabase;
+			var existEntry = database.GetTable(tableReference).GetEntry(message);
+
+			if (existEntry != null && !string.IsNullOrEmpty(existEntry.GetLocalizedString()))
+				return database.GetLocalizedString(tableReference, message);
 
 			return message;
 		}

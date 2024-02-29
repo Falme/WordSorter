@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfCapacity: 6
   shelvesData:
-  - word: casal
-    scrambledWord: malaol
-  - word: moral
-    scrambledWord: crsa
+  - word: word_level_4_1_correct
+    scrambledWord: word_level_4_1_scramble
+  - word: word_level_4_2_correct
+    scrambledWord: word_level_4_2_scramble
   - word: 
     scrambledWord: 
   - word: 

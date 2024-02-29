@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfCapacity: 6
   shelvesData:
-  - word: alma
-    scrambledWord: mnadal
-  - word: nada
-    scrambledWord: aa
+  - word: word_level_10_1_correct
+    scrambledWord: word_level_10_1_scramble
+  - word: word_level_10_2_correct
+    scrambledWord: word_level_10_2_scramble
   - word: 
     scrambledWord: 
   - word: 
     scrambledWord: 
   - word: 
     scrambledWord: 
+  nextLevel: {fileID: 0}
