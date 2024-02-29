@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfCapacity: 6
   shelvesData:
-  - word: zelo
-    scrambledWord: eool
-  - word: doce
-    scrambledWord: eczd
+  - word: word_level_6_1_correct
+    scrambledWord: word_level_6_1_scramble
+  - word: word_level_6_2_correct
+    scrambledWord: word_level_6_2_scramble
   - word: 
     scrambledWord: 
   - word: 

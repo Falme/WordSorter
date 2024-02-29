@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfCapacity: 5
   shelvesData:
-  - word: sonho
-    scrambledWord: ogmoo
-  - word: amigo
-    scrambledWord: anhsi
+  - word: word_level_8_1_correct
+    scrambledWord: word_level_8_1_scramble
+  - word: word_level_8_2_correct
+    scrambledWord: word_level_8_2_scramble
   - word: 
     scrambledWord: 
   - word: 

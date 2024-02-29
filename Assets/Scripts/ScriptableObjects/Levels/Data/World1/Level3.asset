@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfCapacity: 6
   shelvesData:
-  - word: divide
-    scrambledWord: ngivei
-  - word: agente
-    scrambledWord: tdeade
+  - word: word_level_3_1_correct
+    scrambledWord: word_level_3_1_scramble
+  - word: word_level_3_2_correct
+    scrambledWord: word_level_3_2_scramble
   - word: 
     scrambledWord: 
   - word: 

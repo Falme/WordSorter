@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 namespace WordSorter
 {
@@ -44,7 +45,7 @@ namespace WordSorter
 		public void OpenPopup(string bodyText, PopupType popupType, Action buttonACallback = null, Action buttonBCallback = null)
 		{
 			EnableCanvas(true);
-			messageText.text = bodyText;
+			messageText.text = Localization.GetLocalizedMessage(bodyText);
 
 			this.buttonACallback = buttonACallback;
 			this.buttonBCallback = buttonBCallback;

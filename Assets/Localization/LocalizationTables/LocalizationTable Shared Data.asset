@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: LocalizationTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: LocalizationTable
+  m_TableCollectionNameGuidString: d552056ff4582cf449f5c44b1955583a
+  m_Entries:
+  - m_Id: 32871239680
+    m_Key: level-select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785430040576
+    m_Key: ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29695563747328
+    m_Key: yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29785489625088
+    m_Key: no
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36127642177536
+    m_Key: gameplay_popup_body_restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347465650176
+    m_Key: gameplay_popup_body_levelselect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37983089020928
+    m_Key: levelselect_world_title_grasslands
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38071857270784
+    m_Key: levelselect_world_title_mountains
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2220799741673340952
+  references:
+    version: 2
+    RefIds:
+    - rid: 2220799741673340952
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1709170862972

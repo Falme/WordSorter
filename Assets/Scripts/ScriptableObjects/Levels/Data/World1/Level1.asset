@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfCapacity: 4
   shelvesData:
-  - word: casa
-    scrambledWord: csaa
-  - word: moda
-    scrambledWord: omda
+  - word: word_level_1_1_correct
+    scrambledWord: word_level_1_1_scramble
+  - word: word_level_1_2_correct
+    scrambledWord: word_level_1_2_scramble
   - word: 
     scrambledWord: 
   - word: 

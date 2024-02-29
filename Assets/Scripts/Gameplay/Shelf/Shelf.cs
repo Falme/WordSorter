@@ -41,7 +41,7 @@ namespace WordSorter
 		{
 			blockSpacing = shelfSettings.blockSpacing;
 
-			var scrambledWord = levelConfiguration.shelvesData[index].scrambledWord;
+			var scrambledWord = levelConfiguration.shelvesData[index].TranslatedScrambledWord;
 			var capacity = levelConfiguration.shelfCapacity;
 
 			originalScrambledWord = scrambledWord;

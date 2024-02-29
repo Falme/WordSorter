@@ -13,40 +13,29 @@ MonoBehaviour:
   m_Name: LevelSelectionConfiguration
   m_EditorClassIdentifier: 
   worlds:
-  - worldName: Grass Lands
+  - worldName: levelselect_world_title_grasslands
     levels:
     - levelData: {fileID: 11400000, guid: 939d38701d1f65945a2b0b53fe1b88e1, type: 2}
-      nextLevel: {fileID: 11400000, guid: 1bb7ac7d009b759479c2f2e62c963139, type: 2}
       isEnabled: 1
     - levelData: {fileID: 11400000, guid: 1bb7ac7d009b759479c2f2e62c963139, type: 2}
-      nextLevel: {fileID: 11400000, guid: 5ec3dcedcf33bd74b923b2ab9db841ff, type: 2}
       isEnabled: 1
     - levelData: {fileID: 11400000, guid: 5ec3dcedcf33bd74b923b2ab9db841ff, type: 2}
-      nextLevel: {fileID: 11400000, guid: eb55dae95f664b5468b69e40417f257d, type: 2}
       isEnabled: 1
     - levelData: {fileID: 11400000, guid: eb55dae95f664b5468b69e40417f257d, type: 2}
-      nextLevel: {fileID: 11400000, guid: f81aaf22d94fbbf4d8a1bdb7cd12820e, type: 2}
       isEnabled: 1
     - levelData: {fileID: 11400000, guid: f81aaf22d94fbbf4d8a1bdb7cd12820e, type: 2}
-      nextLevel: {fileID: 11400000, guid: 1dac9d07ecc7e7548a4b7fe8ddcc4e0b, type: 2}
       isEnabled: 1
     - levelData: {fileID: 11400000, guid: 1dac9d07ecc7e7548a4b7fe8ddcc4e0b, type: 2}
-      nextLevel: {fileID: 11400000, guid: f12727eb5dc43f54ea74f8bc90514e1a, type: 2}
       isEnabled: 1
     - levelData: {fileID: 11400000, guid: f12727eb5dc43f54ea74f8bc90514e1a, type: 2}
-      nextLevel: {fileID: 11400000, guid: 905f8013e8aa6ae45969d96e280658d3, type: 2}
       isEnabled: 1
     - levelData: {fileID: 11400000, guid: 905f8013e8aa6ae45969d96e280658d3, type: 2}
-      nextLevel: {fileID: 11400000, guid: dfd75423c71e8f543800889fa7cb4bd7, type: 2}
       isEnabled: 1
     - levelData: {fileID: 11400000, guid: dfd75423c71e8f543800889fa7cb4bd7, type: 2}
-      nextLevel: {fileID: 11400000, guid: a7dfec54f70ed414cb84430dba5a28a0, type: 2}
       isEnabled: 1
-  - worldName: Mountains
+  - worldName: levelselect_world_title_mountains
     levels:
     - levelData: {fileID: 11400000, guid: a7dfec54f70ed414cb84430dba5a28a0, type: 2}
-      nextLevel: {fileID: 0}
       isEnabled: 1
     - levelData: {fileID: 0}
-      nextLevel: {fileID: 0}
       isEnabled: 0

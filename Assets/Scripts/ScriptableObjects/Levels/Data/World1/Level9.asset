@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfCapacity: 6
   shelvesData:
-  - word: linear
-    scrambledWord: feenri
-  - word: perfil
-    scrambledWord: illpar
+  - word: word_level_9_1_correct
+    scrambledWord: word_level_9_1_scramble
+  - word: word_level_9_2_correct
+    scrambledWord: word_level_9_2_scramble
   - word: 
     scrambledWord: 
   - word: 

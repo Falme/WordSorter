@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfCapacity: 6
   shelvesData:
-  - word: fazer
-    scrambledWord: jerau
-  - word: justo
-    scrambledWord: ofszt
+  - word: word_level_7_1_correct
+    scrambledWord: word_level_7_1_scramble
+  - word: word_level_7_2_correct
+    scrambledWord: word_level_7_2_scramble
   - word: 
     scrambledWord: 
   - word: 
