@@ -13,7 +13,7 @@ namespace WordSorter
 		[SerializeField] private ShelfManager shelfManager;
 		[SerializeField] private PanelWords panelWords;
 
-		private LevelConfiguration levelConfiguration;
+		private Level levelConfiguration;
 
 		private void Start()
 		{
@@ -89,7 +89,7 @@ namespace WordSorter
 			panelWords.Restart();
 		}
 
-		private bool IsLevelUndefined(LevelConfiguration levelConfiguration)
+		private bool IsLevelUndefined(Level levelConfiguration)
 		{
 			if (levelConfiguration == null)
 			{

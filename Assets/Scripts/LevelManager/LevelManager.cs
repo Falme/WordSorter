@@ -7,14 +7,14 @@ namespace WordSorter
 	{
 		public static LevelManager Instance { get; private set; }
 
-		public LevelConfiguration CurrentLevel { get; set; }
+		public Level CurrentLevel { get; set; }
 
 		private const string LevelSelect = "LevelSelect";
 		private const string Gameplay = "Gameplay";
 
 #if UNITY_EDITOR
 
-		[SerializeField] private LevelConfiguration debugLevel;
+		[SerializeField] private Level debugLevel;
 
 		private void Start()
 		{

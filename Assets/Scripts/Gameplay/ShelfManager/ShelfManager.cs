@@ -13,13 +13,13 @@ namespace WordSorter
 		[SerializeField] private GameObject shelfPrefab;
 		[SerializeField] private ShelfSettings shelfSettings;
 
-		private LevelConfiguration levelConfiguration;
+		private Level levelConfiguration;
 
 		private Shelf lastSelectedShelf = null;
 
 		private Shelf[] shelves;
 
-		public void Initialize(LevelConfiguration levelConfiguration)
+		public void Initialize(Level levelConfiguration)
 		{
 			this.levelConfiguration = levelConfiguration;
 			InstantiateShelves();

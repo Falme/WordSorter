@@ -19,7 +19,7 @@ namespace WordSorter
 	[Serializable]
 	public class LevelSelectData
 	{
-		public LevelConfiguration levelData;
+		public Level levelData;
 		public bool isEnabled;
 	}
 }

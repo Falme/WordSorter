@@ -31,13 +31,13 @@ namespace WordSorter
 
 		public int ShelfLength => nextBlockIndex;
 
-		public void Initialize(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration, int index)
+		public void Initialize(ShelfSettings shelfSettings, Level levelConfiguration, int index)
 		{
 			InitializeBlockGeneration(shelfSettings, levelConfiguration, index);
 			InitializeBoard(shelfSettings, levelConfiguration);
 		}
 
-		private void InitializeBlockGeneration(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration, int index)
+		private void InitializeBlockGeneration(ShelfSettings shelfSettings, Level levelConfiguration, int index)
 		{
 			blockSpacing = shelfSettings.blockSpacing;
 
@@ -48,7 +48,7 @@ namespace WordSorter
 			StartCoroutine(GenerateBlocks(scrambledWord, capacity));
 		}
 
-		private void InitializeBoard(ShelfSettings shelfSettings, LevelConfiguration levelConfiguration)
+		private void InitializeBoard(ShelfSettings shelfSettings, Level levelConfiguration)
 		{
 			var capacity = levelConfiguration.shelfCapacity;
 			SetBoardWidth((capacity - 1) * shelfSettings.widthIncrement);
