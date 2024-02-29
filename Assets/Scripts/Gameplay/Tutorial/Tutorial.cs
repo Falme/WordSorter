@@ -5,24 +5,29 @@ namespace WordSorter
 {
 	public class Tutorial : MonoBehaviour
 	{
-		[SerializeField] private Level tutorialLevel;
 		[SerializeField] private TextMeshProUGUI instructionsText;
+		[SerializeField] private TutorialSettings tutorialSettings;
 
+		private int currentInstruction = -1;
 
 		private void Start()
 		{
-			if (tutorialLevel.Equals(LevelManager.Instance.CurrentLevel))
+			if (tutorialSettings.tutorialLevel.Equals(LevelManager.Instance.CurrentLevel))
 				StartTutorial();
 		}
 
 		private void StartTutorial()
 		{
 			Debug.Log("Starting Tutorial");
+			WriteNextInstruction();
 		}
 
 		private void WriteNextInstruction()
 		{
-			instructionsText.text = Localization.GetLocalizedMessage("yes");
+			if (currentInstruction >= tutorialSettings.instructionsMessages.Length - 1) return;
+
+			currentInstruction++;
+			instructionsText.text = Localization.GetLocalizedMessage(tutorialSettings.instructionsMessages[currentInstruction]);
 		}
 
 		public void Update()

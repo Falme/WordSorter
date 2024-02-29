@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialLevel: {fileID: 11400000, guid: 939d38701d1f65945a2b0b53fe1b88e1, type: 2}
   instructionsText: {fileID: 3840368132775416203}
+  tutorialSettings: {fileID: 11400000, guid: e0bbc7c49f14cb14fb8aefe2e1b6f894, type: 2}
 --- !u!1 &1164114097918465966
 GameObject:
   m_ObjectHideFlags: 0

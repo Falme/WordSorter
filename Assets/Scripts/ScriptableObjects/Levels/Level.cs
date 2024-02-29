@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WordSorter
 {
-	[CreateAssetMenu(fileName = "LevelConfiguration", menuName = "ScriptableObject/LevelConfiguration")]
+	[CreateAssetMenu(fileName = "Level", menuName = "ScriptableObject/Level")]
 	public class Level : ScriptableObject
 	{
 		public int shelfCapacity;

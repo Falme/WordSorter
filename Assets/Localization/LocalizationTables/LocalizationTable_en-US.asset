@@ -50,6 +50,42 @@ MonoBehaviour:
     m_Localized: Mountains
     m_Metadata:
       m_Items: []
+  - m_Id: 305388998578176
+    m_Localized: The bookshelf is not correct. Re-order the books in the correct
+      order.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305466840666112
+    m_Localized: Here's the order they should be in. Each of these words should be
+      equal on any shelf.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305490681090048
+    m_Localized: Let's start by changing some books from one shelf to another. Touch
+      on any shelf and the highlight book will be selected. Then select where to
+      put it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305502177677312
+    m_Localized: That's right, the first word was completed, now complete the next
+      one!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305515020636160
+    m_Localized: Remember, the less moves to organize the shelves, more stars will
+      be at the end of level.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305526395588608
+    m_Localized: If you missplay some move, touch the restart button to reset the
+      level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305537661489152
+    m_Localized: If you want to return to Level Selection, touch the Level Select
+      button.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

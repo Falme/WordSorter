@@ -50,6 +50,42 @@ MonoBehaviour:
     m_Localized: Montanhas
     m_Metadata:
       m_Items: []
+  - m_Id: 305388998578176
+    m_Localized: "Os livros n\xE3o est\xE1 na ordem correta. Reordene os livros na
+      ordem correta."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305466840666112
+    m_Localized: "Esta \xE9 a ordem que deve estar, cada uma dessas palavras deve
+      estar formada em qualquer prateleira."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305490681090048
+    m_Localized: "Vamos come\xE7ar trocando alguns livros de uma prateleira para
+      outra. Toque em qualquer prateleira e o livro em destaque ser\xE1 selecionado.
+      Em seguida, selecione onde coloc\xE1-lo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305502177677312
+    m_Localized: "Isso mesmo, a primeira palavra foi formada, agora complete a pr\xF3xima
+      palavra!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305515020636160
+    m_Localized: "Lembre-se, quanto menos movimentos para organizar as prateleiras,
+      mais estrelas ser\xE3o dadas ao final da fase."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305526395588608
+    m_Localized: "Se voc\xEA errar em algum movimento, toque no bot\xE3o de recome\xE7ar
+      para reiniciar a fase."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305537661489152
+    m_Localized: "Caso queira voltar a sele\xE7\xE3o de fases, toque no bot\xE3o
+      de Selecionar Fases."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
