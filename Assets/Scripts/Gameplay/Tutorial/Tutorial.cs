@@ -18,7 +18,6 @@ namespace WordSorter
 
 		private void StartTutorial()
 		{
-			Debug.Log("Starting Tutorial");
 			WriteNextInstruction();
 		}
 
