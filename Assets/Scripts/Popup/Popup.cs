@@ -45,7 +45,7 @@ namespace WordSorter
 		public void OpenPopup(string bodyText, PopupType popupType, Action buttonACallback = null, Action buttonBCallback = null)
 		{
 			EnableCanvas(true);
-			messageText.text = GetLocalizedMessage(bodyText);
+			messageText.text = Localization.GetLocalizedMessage(bodyText);
 
 			this.buttonACallback = buttonACallback;
 			this.buttonBCallback = buttonBCallback;
@@ -90,16 +90,6 @@ namespace WordSorter
 			canvas.enabled = enable;
 			canvasGroup.interactable = enable;
 			canvasGroup.blocksRaycasts = enable;
-		}
-
-		private string GetLocalizedMessage(string message)
-		{
-			var exists = LocalizationSettings.StringDatabase.GetTable("LocalizationTable").GetEntry(message);
-
-			if (exists != null && !string.IsNullOrEmpty(exists.GetLocalizedString()))
-				return LocalizationSettings.StringDatabase.GetLocalizedString("LocalizationTable", message);
-
-			return message;
 		}
 	}
 }
