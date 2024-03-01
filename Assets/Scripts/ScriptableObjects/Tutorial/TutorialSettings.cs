@@ -25,5 +25,6 @@ namespace WordSorter
 	{
 		public string instructionsMessages;
 		public ShelfMask enableShelvesInteraction;
+		public bool interactiveStep;
 	}
 }

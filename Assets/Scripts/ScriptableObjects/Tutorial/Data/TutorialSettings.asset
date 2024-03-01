@@ -16,27 +16,40 @@ MonoBehaviour:
   tutorialSteps:
   - instructionsMessages: tutorial_instructions_1
     enableShelvesInteraction: 0
+    interactiveStep: 0
   - instructionsMessages: tutorial_instructions_2
     enableShelvesInteraction: 0
+    interactiveStep: 0
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 5
+    interactiveStep: 1
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 5
+    interactiveStep: 1
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 9
+    interactiveStep: 1
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 5
+    interactiveStep: 1
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 9
+    interactiveStep: 1
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 5
+    interactiveStep: 1
   - instructionsMessages: tutorial_instructions_4
     enableShelvesInteraction: 0
+    interactiveStep: 0
   - instructionsMessages: tutorial_instructions_5
     enableShelvesInteraction: 0
+    interactiveStep: 0
   - instructionsMessages: tutorial_instructions_6
     enableShelvesInteraction: 0
+    interactiveStep: 0
   - instructionsMessages: tutorial_instructions_7
     enableShelvesInteraction: 0
+    interactiveStep: 0
   - instructionsMessages: tutorial_instructions_7
     enableShelvesInteraction: -1
+    interactiveStep: 0
