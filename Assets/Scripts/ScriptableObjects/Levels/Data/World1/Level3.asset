@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bfedd9270a3b34ba2334b4d716f1d9, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: 
+  index: 2
   shelfCapacity: 6
   shelvesData:
   - word: word_level_3_1_correct
@@ -23,3 +24,4 @@ MonoBehaviour:
   - word: 
     scrambledWord: 
   nextLevel: {fileID: 11400000, guid: eb55dae95f664b5468b69e40417f257d, type: 2}
+  minimumMoves: 0

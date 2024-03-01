@@ -39,7 +39,8 @@ namespace WordSorter
 
 		public void ShowScore()
 		{
-			score.ShowAbsoluteResult(2);
+			if (LevelData != null)
+				score.ShowLevelScore(LevelManager.Instance.CurrentWorld, LevelData);
 		}
 
 		public void HideScore()
