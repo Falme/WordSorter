@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace WordSorter
@@ -10,7 +9,6 @@ namespace WordSorter
 		[SerializeField] private WordItem[] wordItems;
 
 		private Level level;
-		//private List<WordItem> wordItems = new List<WordItem>();
 
 		private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
 		private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
@@ -28,21 +26,17 @@ namespace WordSorter
 				WordData wordData = level.shelvesData[i];
 				if (string.IsNullOrEmpty(wordData.word)) continue;
 
-				//wordItems.Add(Instantiate(wordItemPrefab, topArea).GetComponent<WordItem>());
-				//wordItems[wordItems.Count - 1].Initialize(wordData.TranslatedWord);
 				wordItems[i].Initialize(wordData.TranslatedWord);
 			}
 		}
 
 		private void CompareWords(string[] words)
 		{
-			ClearWords();
+			Restart();
 
 			foreach (WordItem wordItem in wordItems)
 			{
-				if (!wordItem.Active) continue;
-
-				if (FoundMatch(words, wordItem.Word))
+				if (wordItem.Active && FoundMatch(words, wordItem.Word))
 					wordItem.Highlight(true);
 			}
 		}
@@ -58,13 +52,10 @@ namespace WordSorter
 			return false;
 		}
 
-		public void ClearWords()
+		public void Restart()
 		{
 			foreach (WordItem wordItem in wordItems)
 				wordItem?.Highlight(false);
 		}
-
-		public void Restart() => ClearWords();
-
 	}
 }

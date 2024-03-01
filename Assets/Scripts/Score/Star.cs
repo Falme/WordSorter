@@ -18,12 +18,21 @@ namespace WordSorter
 
 		public void Show(bool enable)
 		{
-			if (enable) StartCoroutine(DelayShow());
+			if (enable)
+			{
+				if (delayResult <= 0f) ImmediateShow();
+				else StartCoroutine(DelayShow());
+			}
 		}
 
 		private IEnumerator DelayShow()
 		{
 			yield return new WaitForSeconds(delayResult);
+			image.color = scoreSettings.highlightColor;
+		}
+
+		private void ImmediateShow()
+		{
 			image.color = scoreSettings.highlightColor;
 		}
 

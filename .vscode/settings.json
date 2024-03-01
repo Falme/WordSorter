@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "WordSorter.sln"
+    "dotnet.defaultSolution": "WordSorterAndroid.sln"
 }
