@@ -17,42 +17,56 @@ MonoBehaviour:
   - instructionsMessages: tutorial_instructions_1
     enableShelvesInteraction: 0
     interactiveStep: 0
+    validFirstShelfLength: 0
   - instructionsMessages: tutorial_instructions_2
     enableShelvesInteraction: 0
     interactiveStep: 0
+    validFirstShelfLength: 0
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 5
     interactiveStep: 1
+    validFirstShelfLength: 3
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 5
     interactiveStep: 1
+    validFirstShelfLength: 2
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 9
     interactiveStep: 1
+    validFirstShelfLength: 1
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 5
     interactiveStep: 1
+    validFirstShelfLength: 2
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 9
     interactiveStep: 1
+    validFirstShelfLength: 3
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 5
     interactiveStep: 1
+    validFirstShelfLength: 4
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 0
     interactiveStep: 0
+    validFirstShelfLength: 0
   - instructionsMessages: tutorial_instructions_4
     enableShelvesInteraction: 0
     interactiveStep: 0
+    validFirstShelfLength: 0
   - instructionsMessages: tutorial_instructions_5
     enableShelvesInteraction: 0
     interactiveStep: 0
+    validFirstShelfLength: 0
   - instructionsMessages: tutorial_instructions_6
     enableShelvesInteraction: 0
     interactiveStep: 0
+    validFirstShelfLength: 0
   - instructionsMessages: tutorial_instructions_7
     enableShelvesInteraction: 0
     interactiveStep: 0
+    validFirstShelfLength: 0
   - instructionsMessages: tutorial_instructions_7
     enableShelvesInteraction: -1
     interactiveStep: 0
+    validFirstShelfLength: 0

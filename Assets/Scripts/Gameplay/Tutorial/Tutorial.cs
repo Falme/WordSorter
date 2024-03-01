@@ -78,17 +78,8 @@ namespace WordSorter
 
 		private void CheckInteractiveStep(string[] wordsInShelf)
 		{
-			if (
-				(currentInstruction == 2 && wordsInShelf[0].Length == 3) ||
-				(currentInstruction == 3 && wordsInShelf[0].Length == 2) ||
-				(currentInstruction == 4 && wordsInShelf[0].Length == 1) ||
-				(currentInstruction == 5 && wordsInShelf[0].Length == 2) ||
-				(currentInstruction == 6 && wordsInShelf[0].Length == 3) ||
-				(currentInstruction == 7 && wordsInShelf[0].Length == 4)
-				)
-			{
+			if (wordsInShelf[0].Length == tutorialSettings.tutorialSteps[currentInstruction].validFirstShelfLength)
 				WriteNextInstruction();
-			}
 		}
 
 	}
