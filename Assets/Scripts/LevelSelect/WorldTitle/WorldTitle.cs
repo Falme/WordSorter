@@ -34,7 +34,7 @@ namespace WordSorter
 			if (text == null)
 				text = GetComponentInChildren<TextMeshProUGUI>();
 
-			text.text = Localization.GetLocalizedMessage(worldName);
+			text.SetText(Localization.GetLocalizedMessage(worldName));
 		}
 	}
 }

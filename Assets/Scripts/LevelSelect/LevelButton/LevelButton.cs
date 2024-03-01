@@ -24,7 +24,7 @@ namespace WordSorter
 
 		public void ChangeNumber(int levelNumber)
 		{
-			levelText.text = levelNumber.ToString();
+			levelText.SetText(levelNumber.ToString());
 		}
 
 		public void ChangeStatus(bool enable)

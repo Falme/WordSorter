@@ -63,7 +63,7 @@ namespace WordSorter
 		private void WriteInstructionsText()
 		{
 			string message = tutorialSettings.tutorialSteps[currentInstruction].instructionsMessages;
-			instructionsText.text = Localization.GetLocalizedMessage(message);
+			instructionsText.SetText(Localization.GetLocalizedMessage(message));
 		}
 
 		private void ShelvesInteraction()

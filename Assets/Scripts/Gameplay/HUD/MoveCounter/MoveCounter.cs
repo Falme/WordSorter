@@ -14,13 +14,13 @@ namespace WordSorter
 
 		public void Add()
 		{
-			counterText.text = (++Counter).ToString();
+			counterText.SetText((++Counter).ToString());
 		}
 
 		public void Restart()
 		{
 			Counter = 0;
-			counterText.text = Counter.ToString();
+			counterText.SetText(Counter.ToString());
 		}
 	}
 }

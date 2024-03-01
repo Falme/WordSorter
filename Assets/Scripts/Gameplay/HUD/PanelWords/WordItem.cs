@@ -15,10 +15,13 @@ namespace WordSorter
 			text = GetComponent<TextMeshProUGUI>();
 		}
 
-		public void Initialize(string word)
+		public void Initialize(string newWord)
 		{
 			Active = true;
-			text.text = Word = word;
+
+			Word = newWord;
+			text.SetText(newWord);
+
 			Highlight(false);
 		}
 
