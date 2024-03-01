@@ -653,6 +653,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 5077472810655575324, guid: 1de0d5014ce71824d81999b5898d62de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 5077472810655575324, guid: 1de0d5014ce71824d81999b5898d62de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.73
+      objectReference: {fileID: 0}
     - target: {fileID: 9021899937911585266, guid: 1de0d5014ce71824d81999b5898d62de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -809,6 +817,10 @@ PrefabInstance:
     - target: {fileID: 3572279216888328666, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556334612734266483, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9150837680515237400, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
