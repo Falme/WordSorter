@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
 
 namespace WordSorter
 {
@@ -17,12 +16,15 @@ namespace WordSorter
 		public static Popup Instance { get; private set; }
 
 		[SerializeField] private TextMeshProUGUI messageText;
-		[SerializeField] private Canvas canvasYesNo, canvasOK;
+		[SerializeField] private Canvas canvasYesNo, canvasOK, canvasScore;
+		[SerializeField] private Score score;
 
 		private Canvas canvas;
 		private CanvasGroup canvasGroup;
 
 		private Action buttonACallback, buttonBCallback;
+
+		public int MovesCounter { get; set; }
 
 		private void Awake()
 		{
@@ -58,6 +60,11 @@ namespace WordSorter
 				case PopupType.YES_NO:
 					ShowDecisionButtons();
 					break;
+				case PopupType.END_LEVEL:
+					score.ShowResult(MovesCounter);
+					ShowOKButton();
+					ShowScore();
+					break;
 			}
 		}
 
@@ -65,6 +72,7 @@ namespace WordSorter
 		{
 			buttonACallback?.Invoke();
 			EnableCanvas(false);
+			score.Restart();
 		}
 
 		public void OnClickNo()
@@ -77,12 +85,19 @@ namespace WordSorter
 		{
 			canvasYesNo.enabled = true;
 			canvasOK.enabled = false;
+			canvasScore.enabled = false;
 		}
 
 		private void ShowOKButton()
 		{
 			canvasYesNo.enabled = false;
 			canvasOK.enabled = true;
+			canvasScore.enabled = false;
+		}
+
+		private void ShowScore()
+		{
+			canvasScore.enabled = true;
 		}
 
 		private void EnableCanvas(bool enable)

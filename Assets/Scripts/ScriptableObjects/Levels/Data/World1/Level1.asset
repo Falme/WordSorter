@@ -23,3 +23,4 @@ MonoBehaviour:
   - word: 
     scrambledWord: 
   nextLevel: {fileID: 11400000, guid: 1bb7ac7d009b759479c2f2e62c963139, type: 2}
+  minimumMoves: 12
