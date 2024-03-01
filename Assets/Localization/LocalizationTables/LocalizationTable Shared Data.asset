@@ -75,6 +75,10 @@ MonoBehaviour:
     m_Key: tutorial_instructions_7
     m_Metadata:
       m_Items: []
+  - m_Id: 439269835886592
+    m_Key: moves-counter
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

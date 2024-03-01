@@ -60,7 +60,7 @@ namespace WordSorter
 				shelf.Highlight();
 				lastSelectedShelf = shelf;
 			}
-			else if (lastSelectedShelf != null && shelf.CanAppendBlock)
+			else if (lastSelectedShelf != null && !lastSelectedShelf.Equals(shelf) && shelf.CanAppendBlock)
 			{
 				PassBlockToShelf(lastSelectedShelf, shelf);
 				lastSelectedShelf = null;

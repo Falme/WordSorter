@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class Score : MonoBehaviour
+namespace WordSorter
 {
-	void Start()
+	public class Score : MonoBehaviour
 	{
+		void Start()
+		{
 
-	}
+		}
 
-	void Update()
-	{
+		void Update()
+		{
 
+		}
 	}
 }
