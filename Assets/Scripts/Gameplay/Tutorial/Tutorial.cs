@@ -79,12 +79,12 @@ namespace WordSorter
 		private void CheckInteractiveStep(string[] wordsInShelf)
 		{
 			if (
-				(currentInstruction == 2 && wordsInShelf[0].ToUpper().Equals("CSA")) ||
-				(currentInstruction == 3 && wordsInShelf[0].ToUpper().Equals("CS")) ||
-				(currentInstruction == 4 && wordsInShelf[3].ToUpper().Equals("S")) ||
-				(currentInstruction == 5 && wordsInShelf[0].ToUpper().Equals("CA")) ||
-				(currentInstruction == 6 && wordsInShelf[0].ToUpper().Equals("CAS")) ||
-				(currentInstruction == 7 && wordsInShelf[0].ToUpper().Equals("CASA"))
+				(currentInstruction == 2 && wordsInShelf[0].Length == 3) ||
+				(currentInstruction == 3 && wordsInShelf[0].Length == 2) ||
+				(currentInstruction == 4 && wordsInShelf[0].Length == 1) ||
+				(currentInstruction == 5 && wordsInShelf[0].Length == 2) ||
+				(currentInstruction == 6 && wordsInShelf[0].Length == 3) ||
+				(currentInstruction == 7 && wordsInShelf[0].Length == 4)
 				)
 			{
 				WriteNextInstruction();

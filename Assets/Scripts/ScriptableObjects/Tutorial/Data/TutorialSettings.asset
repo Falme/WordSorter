@@ -38,6 +38,9 @@ MonoBehaviour:
   - instructionsMessages: tutorial_instructions_3
     enableShelvesInteraction: 5
     interactiveStep: 1
+  - instructionsMessages: tutorial_instructions_3
+    enableShelvesInteraction: 0
+    interactiveStep: 0
   - instructionsMessages: tutorial_instructions_4
     enableShelvesInteraction: 0
     interactiveStep: 0
