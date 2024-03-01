@@ -12,6 +12,7 @@ namespace WordSorter
 		[Header("Scene References")]
 		[SerializeField] private ShelfManager shelfManager;
 		[SerializeField] private PanelWords panelWords;
+		[SerializeField] private Tutorial tutorial;
 
 		private Level level;
 
@@ -23,6 +24,7 @@ namespace WordSorter
 
 			shelfManager.Initialize(level);
 			panelWords.Initialize(level);
+			tutorial.Initialize(level);
 		}
 
 		private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;

@@ -47,3 +47,6 @@ TagManager:
   - name: Block
     uniqueID: 2004861815
     locked: 0
+  - name: Tutorial
+    uniqueID: 1917341551
+    locked: 0

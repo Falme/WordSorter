@@ -47,6 +47,34 @@ MonoBehaviour:
     m_Key: levelselect_world_title_mountains
     m_Metadata:
       m_Items: []
+  - m_Id: 305388998578176
+    m_Key: tutorial_instructions_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305466840666112
+    m_Key: tutorial_instructions_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305490681090048
+    m_Key: tutorial_instructions_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305502177677312
+    m_Key: tutorial_instructions_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305515020636160
+    m_Key: tutorial_instructions_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305526395588608
+    m_Key: tutorial_instructions_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 305537661489152
+    m_Key: tutorial_instructions_7
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

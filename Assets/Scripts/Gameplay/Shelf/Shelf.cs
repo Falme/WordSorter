@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace WordSorter
 		[SerializeField] private Block blockPrefab;
 		[SerializeField] private Transform blocksArea, board;
 
+		private Collider2D collider2D;
+
 		private Block[] blocks;
 		private int nextBlockIndex = 0;
 		private float blockSpacing;
@@ -30,6 +33,11 @@ namespace WordSorter
 		public bool CanDetachBlock => blocks[0] != null;
 
 		public int ShelfLength => nextBlockIndex;
+
+		private void Awake()
+		{
+			collider2D = GetComponent<Collider2D>();
+		}
 
 		public void Initialize(ShelfSettings shelfSettings, Level level, int index)
 		{
@@ -147,5 +155,9 @@ namespace WordSorter
 				SelectShelf();
 		}
 
+		public void SetInteraction(bool enable)
+		{
+			collider2D.enabled = enable;
+		}
 	}
 }
