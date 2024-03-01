@@ -13,11 +13,30 @@ MonoBehaviour:
   m_Name: TutorialSettings
   m_EditorClassIdentifier: 
   tutorialLevel: {fileID: 11400000, guid: 939d38701d1f65945a2b0b53fe1b88e1, type: 2}
-  instructionsMessages:
-  - tutorial_instructions_1
-  - tutorial_instructions_2
-  - tutorial_instructions_3
-  - tutorial_instructions_4
-  - tutorial_instructions_5
-  - tutorial_instructions_6
-  - tutorial_instructions_7
+  tutorialSteps:
+  - instructionsMessages: tutorial_instructions_1
+    enableShelvesInteraction: 0
+  - instructionsMessages: tutorial_instructions_2
+    enableShelvesInteraction: 0
+  - instructionsMessages: tutorial_instructions_3
+    enableShelvesInteraction: 5
+  - instructionsMessages: tutorial_instructions_3
+    enableShelvesInteraction: 5
+  - instructionsMessages: tutorial_instructions_3
+    enableShelvesInteraction: 9
+  - instructionsMessages: tutorial_instructions_3
+    enableShelvesInteraction: 5
+  - instructionsMessages: tutorial_instructions_3
+    enableShelvesInteraction: 9
+  - instructionsMessages: tutorial_instructions_3
+    enableShelvesInteraction: 5
+  - instructionsMessages: tutorial_instructions_4
+    enableShelvesInteraction: 0
+  - instructionsMessages: tutorial_instructions_5
+    enableShelvesInteraction: 0
+  - instructionsMessages: tutorial_instructions_6
+    enableShelvesInteraction: 0
+  - instructionsMessages: tutorial_instructions_7
+    enableShelvesInteraction: 0
+  - instructionsMessages: tutorial_instructions_7
+    enableShelvesInteraction: -1

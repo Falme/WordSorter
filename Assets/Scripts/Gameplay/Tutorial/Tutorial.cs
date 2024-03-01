@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -5,14 +6,25 @@ namespace WordSorter
 {
 	public class Tutorial : MonoBehaviour
 	{
+		[Header("Prefab References")]
 		[SerializeField] private TextMeshProUGUI instructionsText;
 		[SerializeField] private TutorialSettings tutorialSettings;
 
+		[Header("Scene References")]
+		[SerializeField] private ShelfManager shelfManager;
+
+		private Animator animator;
+
 		private int currentInstruction = -1;
 
-		private void Start()
+		private void Awake()
 		{
-			if (tutorialSettings.tutorialLevel.Equals(LevelManager.Instance.CurrentLevel))
+			animator = GetComponent<Animator>();
+		}
+
+		public void Initialize(Level level)
+		{
+			if (tutorialSettings.tutorialLevel.Equals(level))
 				StartTutorial();
 		}
 
@@ -23,15 +35,26 @@ namespace WordSorter
 
 		private void WriteNextInstruction()
 		{
-			if (currentInstruction >= tutorialSettings.instructionsMessages.Length - 1) return;
+			if (currentInstruction >= tutorialSettings.tutorialSteps.Length - 1) return;
 
 			currentInstruction++;
-			instructionsText.text = Localization.GetLocalizedMessage(tutorialSettings.instructionsMessages[currentInstruction]);
+
+			shelfManager.EnableShelfInteraction(tutorialSettings.tutorialSteps[currentInstruction].enableShelvesInteraction);
+
+			string message = tutorialSettings.tutorialSteps[currentInstruction].instructionsMessages;
+			instructionsText.text = Localization.GetLocalizedMessage(message);
+
+			animator.SetTrigger("NextAnimation");
+
 		}
 
 		public void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.Alpha1)) WriteNextInstruction();
+			if (Input.GetMouseButtonDown(0))
+			{
+				WriteNextInstruction();
+			}
 		}
+
 	}
 }

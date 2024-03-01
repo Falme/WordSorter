@@ -402,6 +402,17 @@ Transform:
   - {fileID: 220991428}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &560352435 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 330160763247346606, guid: 1de0d5014ce71824d81999b5898d62de, type: 3}
+  m_PrefabInstance: {fileID: 1008954653682079088}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c64811d62519f0f4ba6fb9598b0a0011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &589029215 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2763983243561964433, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
@@ -589,6 +600,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 2058240410281766413, guid: 233fbe1522405d44dad0968dd72b1037, type: 3}
+      propertyPath: tutorial
+      value: 
+      objectReference: {fileID: 560352435}
+    - target: {fileID: 2058240410281766413, guid: 233fbe1522405d44dad0968dd72b1037, type: 3}
       propertyPath: panelWords
       value: 
       objectReference: {fileID: 1624425958}
@@ -649,6 +664,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 330160763247346606, guid: 1de0d5014ce71824d81999b5898d62de, type: 3}
+      propertyPath: shelfManager
+      value: 
+      objectReference: {fileID: 2106460999}
     - target: {fileID: 616493171664870887, guid: 1de0d5014ce71824d81999b5898d62de, type: 3}
       propertyPath: m_Name
       value: Tutorial
