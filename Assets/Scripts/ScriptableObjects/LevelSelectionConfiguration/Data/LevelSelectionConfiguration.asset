@@ -37,5 +37,3 @@ MonoBehaviour:
     levels:
     - levelData: {fileID: 11400000, guid: a7dfec54f70ed414cb84430dba5a28a0, type: 2}
       isEnabled: 1
-    - levelData: {fileID: 0}
-      isEnabled: 0

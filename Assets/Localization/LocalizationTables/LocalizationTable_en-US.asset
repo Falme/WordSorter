@@ -90,6 +90,14 @@ MonoBehaviour:
     m_Localized: Moves
     m_Metadata:
       m_Items: []
+  - m_Id: 528445541404672
+    m_Localized: Congratulations! <br> To the next Level!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 528676551086080
+    m_Localized: Completed The Game! <br> To the Level Selection!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

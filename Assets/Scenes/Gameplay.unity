@@ -217,7 +217,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 7.24, y: 11.22}
+  m_Size: {x: 11.58, y: 17.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -398,7 +398,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -784,6 +784,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 418685819}
     m_Modifications:
+    - target: {fileID: 13663283237969251, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
+      propertyPath: m_ConstraintCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 142951334365109671, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
       propertyPath: gameManager
       value: 
@@ -888,6 +892,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 6140055253146995711, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297764780011836160, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
+      propertyPath: bottomArea
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6556334612734266483, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -937,7 +949,8 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6918440303451432445, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}

@@ -79,6 +79,14 @@ MonoBehaviour:
     m_Key: moves-counter
     m_Metadata:
       m_Items: []
+  - m_Id: 528445541404672
+    m_Key: popup_message_nextlevel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 528676551086080
+    m_Key: popup_message_completegame
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

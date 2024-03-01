@@ -8,6 +8,7 @@ namespace WordSorter
 		[SerializeField] private WordItemSettings settings;
 		private TextMeshProUGUI text;
 		public string Word { get; private set; }
+		public bool Active { get; set; }
 
 		public void Awake()
 		{
@@ -16,6 +17,7 @@ namespace WordSorter
 
 		public void Initialize(string word)
 		{
+			Active = true;
 			text.text = Word = word;
 			Highlight(false);
 		}

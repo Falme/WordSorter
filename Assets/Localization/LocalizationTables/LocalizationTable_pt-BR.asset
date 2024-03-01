@@ -90,6 +90,14 @@ MonoBehaviour:
     m_Localized: Jogadas
     m_Metadata:
       m_Items: []
+  - m_Id: 528445541404672
+    m_Localized: "Parab\xE9ns! <br> Para a pr\xF3xima fase!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 528676551086080
+    m_Localized: "Jogo Completo! <br> Para a Sele\xE7\xE3o de Fases!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -125,6 +125,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instructionsText: {fileID: 3840368132775416203}
   tutorialSettings: {fileID: 11400000, guid: e0bbc7c49f14cb14fb8aefe2e1b6f894, type: 2}
+  shelfManager: {fileID: 0}
+  buttonRestart: {fileID: 0}
+  buttonLevelSelect: {fileID: 0}
 --- !u!95 &1913255607895825500
 Animator:
   serializedVersion: 5
@@ -313,7 +316,7 @@ RectTransform:
   m_Father: {fileID: 7588887233922476861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.21, y: 0}
-  m_AnchorMax: {x: 0.79, y: 1}
+  m_AnchorMax: {x: 0.79, y: 0.75}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

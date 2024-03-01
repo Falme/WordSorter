@@ -6,10 +6,11 @@ namespace WordSorter
 	public class PanelWords : MonoBehaviour
 	{
 		[SerializeField] private GameObject wordItemPrefab;
-		[SerializeField] private Transform topArea, bottomArea;
+		[SerializeField] private Transform topArea;
+		[SerializeField] private WordItem[] wordItems;
 
 		private Level level;
-		private List<WordItem> wordItems = new List<WordItem>();
+		//private List<WordItem> wordItems = new List<WordItem>();
 
 		private void OnEnable() => ShelfManager.CompareWordsEvent += CompareWords;
 		private void OnDisable() => ShelfManager.CompareWordsEvent -= CompareWords;
@@ -22,12 +23,14 @@ namespace WordSorter
 
 		public void InstantiateWordItems()
 		{
-			foreach (WordData wordData in level.shelvesData)
+			for (int i = 0; i < level.shelvesData.Length; i++)
 			{
+				WordData wordData = level.shelvesData[i];
 				if (string.IsNullOrEmpty(wordData.word)) continue;
 
-				wordItems.Add(Instantiate(wordItemPrefab, topArea).GetComponent<WordItem>());
-				wordItems[wordItems.Count - 1].Initialize(wordData.TranslatedWord);
+				//wordItems.Add(Instantiate(wordItemPrefab, topArea).GetComponent<WordItem>());
+				//wordItems[wordItems.Count - 1].Initialize(wordData.TranslatedWord);
+				wordItems[i].Initialize(wordData.TranslatedWord);
 			}
 		}
 
@@ -37,6 +40,8 @@ namespace WordSorter
 
 			foreach (WordItem wordItem in wordItems)
 			{
+				if (!wordItem.Active) continue;
+
 				if (FoundMatch(words, wordItem.Word))
 					wordItem.Highlight(true);
 			}

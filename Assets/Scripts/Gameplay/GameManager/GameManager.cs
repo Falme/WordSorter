@@ -4,8 +4,8 @@ namespace WordSorter
 {
 	public class GameManager : MonoBehaviour
 	{
-		private const string NextLevelBodyText = "Congratulations! \n To the next Level!";
-		private const string LevelSelectBodyText = "Completed The Game! \n To the Level Selection!";
+		private const string NextLevelBodyText = "popup_message_nextlevel";
+		private const string LevelSelectBodyText = "popup_message_completegame";
 		private const string UndefinedLevelErrorMessage =
 			"LevelConfiguration was not set, please check the Level Selection and Level Scriptable Objects";
 
