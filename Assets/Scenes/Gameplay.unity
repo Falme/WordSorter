@@ -207,6 +207,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &318936272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3121097688122602364, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
+  m_PrefabInstance: {fileID: 1101427825875095304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &418685815
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +508,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c6abe4c31f19b4f9d9dde741b9c72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1552666667 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9150837680515237400, guid: 2b4cf6d659ec6d049a1f21c523199e22, type: 3}
+  m_PrefabInstance: {fileID: 1101427825875095304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1623373290 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2058240410281766413, guid: 233fbe1522405d44dad0968dd72b1037, type: 3}
@@ -668,6 +690,14 @@ PrefabInstance:
       propertyPath: shelfManager
       value: 
       objectReference: {fileID: 2106460999}
+    - target: {fileID: 330160763247346606, guid: 1de0d5014ce71824d81999b5898d62de, type: 3}
+      propertyPath: buttonRestart
+      value: 
+      objectReference: {fileID: 1552666667}
+    - target: {fileID: 330160763247346606, guid: 1de0d5014ce71824d81999b5898d62de, type: 3}
+      propertyPath: buttonLevelSelect
+      value: 
+      objectReference: {fileID: 318936272}
     - target: {fileID: 616493171664870887, guid: 1de0d5014ce71824d81999b5898d62de, type: 3}
       propertyPath: m_Name
       value: Tutorial

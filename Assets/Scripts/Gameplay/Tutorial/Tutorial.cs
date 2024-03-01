@@ -1,17 +1,20 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace WordSorter
 {
 	public class Tutorial : MonoBehaviour
 	{
+		private const string AnimationName = "NextAnimation";
 		[Header("Prefab References")]
 		[SerializeField] private TextMeshProUGUI instructionsText;
 		[SerializeField] private TutorialSettings tutorialSettings;
 
 		[Header("Scene References")]
 		[SerializeField] private ShelfManager shelfManager;
+		[SerializeField] private Button buttonRestart, buttonLevelSelect;
 
 		private Animator animator;
 
@@ -35,24 +38,27 @@ namespace WordSorter
 		private void StartTutorial()
 		{
 			currentlyInTutorial = true;
+			EnableUIButtons(false);
 			WriteNextInstruction();
 		}
 
 		private void WriteNextInstruction()
 		{
-			if (currentInstruction >= tutorialSettings.tutorialSteps.Length - 1) return;
+			if (currentInstruction >= tutorialSettings.tutorialSteps.Length - 1)
+			{
+				currentlyInTutorial = false;
+				EnableUIButtons(true);
+				return;
+			}
 
 			currentInstruction++;
+
 			ShelvesInteraction();
 			WriteInstructionsText();
 			NextAnimation();
-
 		}
 
-		private void NextAnimation()
-		{
-			animator.SetTrigger("NextAnimation");
-		}
+		private void NextAnimation() => animator.SetTrigger(AnimationName);
 
 		private void WriteInstructionsText()
 		{
@@ -80,6 +86,12 @@ namespace WordSorter
 		{
 			if (wordsInShelf[0].Length == tutorialSettings.tutorialSteps[currentInstruction].validFirstShelfLength)
 				WriteNextInstruction();
+		}
+
+		private void EnableUIButtons(bool enable)
+		{
+			buttonRestart.interactable = enable;
+			buttonLevelSelect.interactable = enable;
 		}
 
 	}
