@@ -47,9 +47,11 @@ namespace WordSorter
 			{
 				if (a >= levelSelectionConfiguration.worlds[world].levels.Length)
 				{
+					levelButtons[a].HideScore();
 					levelButtons[a].ChangeStatus(false);
 					continue;
 				}
+				levelButtons[a].ShowScore();
 				levelButtons[a].ChangeStatus(levelSelectionConfiguration.worlds[world].levels[a].isEnabled);
 				levelButtons[a].LevelData = levelSelectionConfiguration.worlds[world].levels[a].levelData;
 			}

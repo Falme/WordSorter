@@ -17,6 +17,12 @@ namespace WordSorter
 				stars[a].Show(true);
 		}
 
+		public void ShowAbsoluteResult(int rateScore)
+		{
+			for (int a = 0; a < rateScore; a++)
+				stars[a].Show(true);
+		}
+
 		public void Restart()
 		{
 			for (int a = 0; a < stars.Length; a++)
