@@ -47,7 +47,7 @@ namespace WordSorter
 		public void OpenPopup(string bodyText, PopupType popupType, Action buttonACallback = null, Action buttonBCallback = null)
 		{
 			EnableCanvas(true);
-			messageText.text = Localization.GetLocalizedMessage(bodyText);
+			messageText.SetText(Localization.GetLocalizedMessage(bodyText));
 
 			this.buttonACallback = buttonACallback;
 			this.buttonBCallback = buttonBCallback;

@@ -42,7 +42,7 @@ namespace WordSorter
 
 		private void PrintLetter()
 		{
-			letterText.text = Letter.ToString();
+			letterText.SetText(Letter.ToString());
 		}
 	}
 }
