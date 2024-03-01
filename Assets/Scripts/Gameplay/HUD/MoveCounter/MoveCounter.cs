@@ -7,17 +7,20 @@ namespace WordSorter
 	{
 		[SerializeField] private TextMeshProUGUI counterText;
 
-		private int counter = 0;
+		public int Counter { get; private set; } = 0;
+
+		private void OnEnable() => ShelfManager.SuccessfulMoveEvent += Add;
+		private void OnDisable() => ShelfManager.SuccessfulMoveEvent -= Add;
 
 		public void Add()
 		{
-			counterText.text = (++counter).ToString();
+			counterText.text = (++Counter).ToString();
 		}
 
 		public void Reset()
 		{
-			counter = 0;
-			counterText.text = counter.ToString();
+			Counter = 0;
+			counterText.text = Counter.ToString();
 		}
 	}
 }

@@ -8,6 +8,9 @@ namespace WordSorter
 		#region Events
 		public delegate void CompareWordsDelegate(string[] words);
 		public static event CompareWordsDelegate CompareWordsEvent;
+
+		public delegate void SuccessfulMoveDelegate();
+		public static event SuccessfulMoveDelegate SuccessfulMoveEvent;
 		#endregion
 
 		[SerializeField] private GameObject shelfPrefab;
@@ -64,6 +67,7 @@ namespace WordSorter
 			{
 				PassBlockToShelf(lastSelectedShelf, shelf);
 				lastSelectedShelf = null;
+				SuccessfulMoveEvent?.Invoke();
 			}
 
 			CompareWordsEvent?.Invoke(GetShelvesContent());

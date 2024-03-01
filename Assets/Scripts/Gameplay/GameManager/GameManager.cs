@@ -45,7 +45,7 @@ namespace WordSorter
 		{
 			Popup.Instance.OpenPopup(
 					LevelSelectBodyText,
-					PopupType.OK,
+					PopupType.END_LEVEL,
 					() =>
 					{
 						LevelManager.Instance.ToLevelSelect();
@@ -57,7 +57,7 @@ namespace WordSorter
 		{
 			Popup.Instance.OpenPopup(
 					NextLevelBodyText,
-					PopupType.OK,
+					PopupType.END_LEVEL,
 					() =>
 					{
 						LevelManager.Instance.CurrentLevel = LevelManager.Instance.CurrentLevel.nextLevel;
