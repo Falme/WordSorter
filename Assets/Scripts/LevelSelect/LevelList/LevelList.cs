@@ -21,6 +21,8 @@ namespace WordSorter
 
 		private void Start()
 		{
+			LevelManager.Instance.CurrentWorld = 0;
+
 			LoadWorld();
 			UpdateUI();
 		}
@@ -47,11 +49,13 @@ namespace WordSorter
 			{
 				if (a >= levelSelectionConfiguration.worlds[world].levels.Length)
 				{
+					levelButtons[a].HideScore();
 					levelButtons[a].ChangeStatus(false);
 					continue;
 				}
 				levelButtons[a].ChangeStatus(levelSelectionConfiguration.worlds[world].levels[a].isEnabled);
 				levelButtons[a].LevelData = levelSelectionConfiguration.worlds[world].levels[a].levelData;
+				levelButtons[a].ShowScore();
 			}
 
 		}

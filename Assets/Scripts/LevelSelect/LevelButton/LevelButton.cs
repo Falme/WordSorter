@@ -9,6 +9,7 @@ namespace WordSorter
 		[SerializeField] private TextMeshProUGUI levelText;
 		[SerializeField] private LevelButtonSettings levelButtonSettings;
 		[SerializeField] private Image levelImage;
+		[SerializeField] private Score score;
 
 		private Button button;
 
@@ -34,6 +35,17 @@ namespace WordSorter
 			levelImage.color = enable ? levelButtonSettings.colorEnabled : levelButtonSettings.colorDisabled;
 
 			ShowText(enable);
+		}
+
+		public void ShowScore()
+		{
+			if (LevelData != null)
+				score.ShowLevelScore(LevelManager.Instance.CurrentWorld, LevelData);
+		}
+
+		public void HideScore()
+		{
+			score.Restart();
 		}
 
 		public void ShowText(bool enable)

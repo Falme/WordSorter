@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ namespace WordSorter
 		public static LevelManager Instance { get; private set; }
 
 		public Level CurrentLevel { get; set; }
+		public int CurrentWorld { get; set; }
 
 		private const string LevelSelect = "LevelSelect";
 		private const string Gameplay = "Gameplay";
@@ -34,6 +36,15 @@ namespace WordSorter
 
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
+		}
+
+		private void OnEnable() => LevelList.ChangedWorldNumberEvent += UpdateCurrentWorld;
+
+		private void OnDisable() => LevelList.ChangedWorldNumberEvent -= UpdateCurrentWorld;
+
+		private void UpdateCurrentWorld(int currentWorld, int worldsLength)
+		{
+			CurrentWorld = currentWorld;
 		}
 
 		public void LoadScene(string sceneName)
