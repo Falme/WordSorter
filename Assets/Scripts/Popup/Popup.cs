@@ -17,11 +17,14 @@ namespace WordSorter
 
 		[SerializeField] private TextMeshProUGUI messageText;
 		[SerializeField] private Canvas canvasYesNo, canvasOK, canvasScore;
+		[SerializeField] private Score score;
 
 		private Canvas canvas;
 		private CanvasGroup canvasGroup;
 
 		private Action buttonACallback, buttonBCallback;
+
+		public int MovesCounter { get; set; }
 
 		private void Awake()
 		{
@@ -58,6 +61,7 @@ namespace WordSorter
 					ShowDecisionButtons();
 					break;
 				case PopupType.END_LEVEL:
+					score.ShowResult(MovesCounter);
 					ShowOKButton();
 					ShowScore();
 					break;
@@ -68,6 +72,7 @@ namespace WordSorter
 		{
 			buttonACallback?.Invoke();
 			EnableCanvas(false);
+			score.Restart();
 		}
 
 		public void OnClickNo()

@@ -27,7 +27,7 @@ namespace WordSorter
 			image.color = scoreSettings.highlightColor;
 		}
 
-		public void Reset()
+		public void Restart()
 		{
 			image.color = scoreSettings.defaultColor;
 		}

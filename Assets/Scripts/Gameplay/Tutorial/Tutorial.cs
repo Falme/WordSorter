@@ -84,6 +84,8 @@ namespace WordSorter
 
 		private void CheckInteractiveStep(string[] wordsInShelf)
 		{
+			if (!currentlyInTutorial) return;
+
 			if (wordsInShelf[0].Length == tutorialSettings.tutorialSteps[currentInstruction].validFirstShelfLength)
 				WriteNextInstruction();
 		}

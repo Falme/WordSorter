@@ -17,7 +17,7 @@ namespace WordSorter
 			counterText.text = (++Counter).ToString();
 		}
 
-		public void Reset()
+		public void Restart()
 		{
 			Counter = 0;
 			counterText.text = Counter.ToString();

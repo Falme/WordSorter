@@ -128,6 +128,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5422180602357394571, guid: c43c1a4c18e41f240875e8fb063a286d, type: 3}
   m_PrefabInstance: {fileID: 3694941924234558703}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &120656576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8301699343681736489, guid: c43c1a4c18e41f240875e8fb063a286d, type: 3}
+  m_PrefabInstance: {fileID: 3694941924234558703}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa75d704b5e16640b9fd991098c8c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &220991427
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +646,10 @@ PrefabInstance:
       propertyPath: panelWords
       value: 
       objectReference: {fileID: 1624425958}
+    - target: {fileID: 2058240410281766413, guid: 233fbe1522405d44dad0968dd72b1037, type: 3}
+      propertyPath: moveCounter
+      value: 
+      objectReference: {fileID: 120656576}
     - target: {fileID: 2058240410281766413, guid: 233fbe1522405d44dad0968dd72b1037, type: 3}
       propertyPath: shelfManager
       value: 

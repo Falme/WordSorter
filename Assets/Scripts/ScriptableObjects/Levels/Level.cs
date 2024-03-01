@@ -8,5 +8,6 @@ namespace WordSorter
 		public int shelfCapacity;
 		public WordData[] shelvesData;
 		public Level nextLevel;
+		public int minimumMoves;
 	}
 }

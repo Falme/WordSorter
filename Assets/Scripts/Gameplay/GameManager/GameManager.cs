@@ -13,6 +13,7 @@ namespace WordSorter
 		[SerializeField] private ShelfManager shelfManager;
 		[SerializeField] private PanelWords panelWords;
 		[SerializeField] private Tutorial tutorial;
+		[SerializeField] private MoveCounter moveCounter;
 
 		private Level level;
 
@@ -34,6 +35,8 @@ namespace WordSorter
 		{
 			if (AreAllWordsMatching(words, level.shelvesData))
 			{
+				Popup.Instance.MovesCounter = moveCounter.Counter;
+
 				if (LevelManager.Instance.CurrentLevel.nextLevel != null)
 					ShowNextLevelPopup();
 				else
@@ -89,6 +92,7 @@ namespace WordSorter
 		{
 			shelfManager.Restart();
 			panelWords.Restart();
+			moveCounter.Restart();
 		}
 
 		private bool IsLevelUndefined(Level levelConfiguration)
