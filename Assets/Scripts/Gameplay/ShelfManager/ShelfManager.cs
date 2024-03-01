@@ -113,8 +113,6 @@ namespace WordSorter
 			for (int a = 0, mask = 1; a < shelves.Length; a++)
 			{
 				shelves[a].SetInteraction((mask & (int)shelfMask) == mask);
-				Debug.Log($"Shelf {a} was set collision to {(mask & (int)shelfMask) == mask}");
-
 				shelfMask = (ShelfMask)((int)shelfMask >> 1);
 			}
 		}
